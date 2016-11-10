@@ -4,10 +4,16 @@ export default class GamesContent extends React.Component {
   render() {
     let {content} = this.props
     let contentNodes = []
-    content.forEach((item, index) => {
+    content.games.forEach((item, index) => {
       let node = (
         <div key={item.id}>
-        	<p>{item.id}{item.team1}{item.team2}{item.team1score}{item.team2score}</p>
+        	<ul>
+        	<li>game={item.id}</li>
+        	<li>team1={item.team1}</li>
+        	<li>team2={item.team2}</li>
+        	<li>team1score={item.team1score}</li>
+        	<li>team2score={item.team2score}</li>
+        	</ul>
         </div>
       )
       contentNodes.push(node)

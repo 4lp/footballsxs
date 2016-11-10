@@ -34,7 +34,6 @@ export default class GamesContainer extends React.Component {
     }
     return (
     	<div>
-    		<p>gamesContainer loaded</p>
           {games.content !== undefined &&
           <GamesContent content={games.content} />
           }

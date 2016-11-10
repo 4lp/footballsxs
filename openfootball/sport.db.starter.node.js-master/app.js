@@ -1,9 +1,10 @@
 
 var express = require('express');
 var app = express();
-
+var cors = require('cors')
 var sportdb = require( './sportdb' );
 
+app.use(cors())
 
 app.get( '/events', function( req, res, next ) {
   sportdb.Event.findAll( function( err, events ) {

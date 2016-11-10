@@ -10,6 +10,8 @@ import { Provider } from "react-redux"
 import thunk from "redux-thunk"
 import * as reducers from "./reducers"
 import GamesContainer from "./containers/gamesContainer"
+import TeamsContainer from "./containers/TeamsContainer"
+import EventsContainer from "./containers/EventsContainer"
 
 let finalCreateStore = compose(
   applyMiddleware(thunk),
@@ -24,8 +26,17 @@ class App extends React.Component {
 		return (
 			<div>
 				<p>App loaded</p>
+				<p>Events</p>
+				<Provider store={store}>
+					<EventsContainer />
+				</Provider>
+				<p>Games</p>
 				<Provider store={store}>
 					<GamesContainer />
+				</Provider>
+				<p>Teams</p>
+				<Provider store={store}>
+					<TeamsContainer />
 				</Provider>
 			</div>
 			)

@@ -21,7 +21,8 @@ sportdb.Team.findByEvent = function( event, callback )  {
   "SELECT" +
   "  t.[key], " +
   "  t.title, " +
-  "  t.code   " +
+  "  t.code,   " +
+  "  t.id     " +
   "FROM teams t " +
   "  INNER JOIN events_teams et ON et.team_id = t.id " +
   "  INNER JOIN events e ON e.id = et.event_id " +

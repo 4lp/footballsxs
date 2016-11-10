@@ -8,7 +8,7 @@ export const GAMES_FAILURE = "GAMES_FAILURE"
 
 export function fetchGames() {
   return function (dispatch) {
-    let url = "http://localhost:9292/event/en.2016_17/games"
+    let url = "http://localhost:9292/event/en.2016_17/games/"
     dispatch({type: GAMES})
     return request(
       url, {},

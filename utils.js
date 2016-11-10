@@ -5,7 +5,6 @@ export function request(url, options, success, error400, error, failure) {
   headers.append("Content-Type", "application/json")
   headers.append("Accept", "application/json")
   options["headers"] = headers
-  options["mode"] = "cors"
   return fetch(url, options)
     .then(res => {
       if (res.status >= 200 && res.status < 300) {
