@@ -1,0 +1,7 @@
+**/tmp
+**/node_modules
+Datafile
+football.db
+sport.db
+openmundi/**
+.git

@@ -1,0 +1,21 @@
+import { request } from "../utils"
+
+export const GAMES = "GAMES"
+export const GAMES_SUCCESS = "GAMES_SUCCESS"
+export const GAMES_ERROR400 = "GAMES_ERROR400"
+export const GAMES_ERROR500 = "GAMES_ERROR500"
+export const GAMES_FAILURE = "GAMES_FAILURE"
+
+export function fetchGames() {
+  return function (dispatch) {
+    let url = "http://localhost:9292/event/en.2016_17/games"
+    dispatch({type: GAMES})
+    return request(
+      url, {},
+      (json) => { dispatch({type: GAMES_SUCCESS, res: json}) },
+      (json) => { dispatch({type: GAMES_ERROR400, res: json}) },
+      (res) => { dispatch({type: GAMES_ERROR500, res: res}) },
+      (ex) => { dispatch({type: GAMES_FAILURE, error: ex}) },
+    )
+  }
+}
