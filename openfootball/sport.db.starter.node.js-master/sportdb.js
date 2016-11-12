@@ -92,6 +92,19 @@ sportdb.Event.findAll = function( callback )  {
    });
 };
 
+sportdb.Team.findAll = function( callback )  {
+
+  var query =
+   "SELECT *" +
+   "FROM teams " 
+   
+  db.all( query,
+           function(err, rows) {
+        console.log( "Event.findAll-complete" );
+        callback( err, rows );
+   });
+};
+
 // todo/fix: close db - possible? when? how?
 // db.close();
 

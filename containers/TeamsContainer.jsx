@@ -10,8 +10,8 @@ import { connect } from "react-redux"
 export default class TeamsContainer extends React.Component {
   componentDidMount() {
     let {dispatch, teams} = this.props
-    if (!teams.isLoadingTeams && teams.content === undefined) {
-      dispatch(teamsActions.fetchTeams())
+    if (!teams.isLoadingTeams && teams.content === undefined) { 
+        dispatch(teamsActions.fetchTeams())  
     }
   }
 

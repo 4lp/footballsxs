@@ -1,22 +1,29 @@
 import React from "react"
 
 export default class TeamsContent extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      selectedTeam: 0,
+    };
+  }
+
+  setTeam(index) {
+    this.setState({ selectedTeam: index })
+  }
+
   render() {
     let {content} = this.props
     let contentNodes = []
-    content.teams.forEach((item, index) => {
+    content.forEach((item) => {
       let node = (
         <div key={item.key}>
-        	<ul>
-          <li>id={item.id}</li>
-        	<li>key={item.key}</li>
-        	<li>title={item.title}</li>
-        	<li>code={item.code}</li>
-        	</ul>
+        	<div onClick={() => this.setTeam(item.id)}>{item.title}</div>
         </div>
       )
       contentNodes.push(node)
     })
+
     return (
       <div>{contentNodes}</div>
     )
