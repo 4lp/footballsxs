@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "dependencies": {
     "sqlite3": "*",
-    "express": "4.9.5"
+    "express": "4.9.5",
+    "cors": "~2.8.1"
   }
 }
