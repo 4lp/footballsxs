@@ -16,6 +16,16 @@ app.get( '/events', function( req, res, next ) {
   });
 });
 
+app.get( '/teams', function( req, res, next ) {
+  sportdb.Team.findAll( function( err, teams ) {
+    if( err )
+      return next( err );
+    
+    console.log( teams );
+    res.json( teams );
+  });
+});
+
 app.get( '/event/:key/teams', function( req, res, next ) {
   // step 1: fetch records
 

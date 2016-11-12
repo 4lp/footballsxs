@@ -8,7 +8,7 @@ export const TEAMS_FAILURE = "TEAMS_FAILURE"
 
 export function fetchTeams() {
   return function (dispatch) {
-    let url = "http://localhost:9292/event/en.2016_17/teams/"
+    let url = "http://localhost:9292/teams/"
     dispatch({type: TEAMS})
     return request(
       url, {},

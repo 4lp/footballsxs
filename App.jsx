@@ -25,16 +25,7 @@ class App extends React.Component {
 	render () {
 		return (
 			<div>
-				<p>App loaded</p>
-				<p>Events</p>
-				<Provider store={store}>
-					<EventsContainer />
-				</Provider>
-				<p>Games</p>
-				<Provider store={store}>
-					<GamesContainer />
-				</Provider>
-				<p>Teams</p>
+				<p>Select a team to begin</p>
 				<Provider store={store}>
 					<TeamsContainer />
 				</Provider>
