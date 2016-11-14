@@ -8,10 +8,12 @@ import {
 } from "redux"
 import { Provider } from "react-redux"
 import thunk from "redux-thunk"
+import "babel-polyfill"
 import * as reducers from "./reducers"
 import GamesContainer from "./containers/gamesContainer"
 import TeamsContainer from "./containers/TeamsContainer"
 import EventsContainer from "./containers/EventsContainer"
+
 
 let finalCreateStore = compose(
   applyMiddleware(thunk),

@@ -1,18 +1,29 @@
 import React from "react"
 import * as eventsActions from '../actions/eventsActions'
+import * as eventTeamsActions from '../actions/eventTeamsActions'
 import EventsContent from '../components/EventsContent'
 import { connect } from "react-redux"
 
 @connect(state => ({
-  events: state.events
+  events: state.events,
+  eventTeams: state.eventTeams
 }))
 
 export default class EventsContainer extends React.Component {
+  constructor(props){
+    super(props);
+      this.state = {
+        eventTeams: undefined,
+      };
+  }
+
   componentDidMount() {
-    let {dispatch, events} = this.props
-    if (!events.isLoadingEvents && events.content === undefined) {
-      dispatch(eventsActions.fetchEvents())
-    }
+    let {dispatch, events, eventTeams} = this.props
+      if (!events.isLoadingEvents && events.content === undefined) {
+          dispatch(eventsActions.fetchEvents())
+          .then(() => {
+            dispatch(eventTeamsActions.fetchEventTeams())
+       })}
   }
 
   renderLoading() {

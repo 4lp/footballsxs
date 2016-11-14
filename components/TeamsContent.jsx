@@ -1,4 +1,5 @@
 import React from "react"
+import EventsContainer from "../containers/EventsContainer"
 
 export default class TeamsContent extends React.Component {
   constructor(props){
@@ -25,7 +26,7 @@ export default class TeamsContent extends React.Component {
     })
 
     return (
-      <div>{contentNodes}</div>
+      <div><EventsContainer selectedTeam={this.state.selectedTeam}/>{contentNodes}</div>
     )
   }
 }
