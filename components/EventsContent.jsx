@@ -7,8 +7,8 @@ export default class EventsContent extends React.Component {
       for (let j = 0, leng = this.props.eventTeams.eventTeams[i].teams.length; j < leng; j++) {
         if(this.props.eventTeams.eventTeams[i].teams[j].id === teamid) {
           eventArr.push(this.props.eventTeams.eventTeams[i].key)
-        return eventArr
-        console.log(eventArr)
+          console.log(eventArr)
+          return eventArr
         }
       }
     }
