@@ -5,3 +5,4 @@ football.db
 sport.db
 openmundi/**
 .git
+webpack-stats-local.json
