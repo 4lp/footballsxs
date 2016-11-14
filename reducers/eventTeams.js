@@ -10,7 +10,6 @@ export default function eventTeams(state=initialState, action={}) {
   case eventTeamsActions.EVENTTEAMS:
     return {...state, isLoadingEventTeams: true}
   case eventTeamsActions.EVENTTEAMS_SUCCESS:
-    console.log(state)
     return {...state, isLoadingEventTeams: false, content: state.eventTeams.push(action.res)}
   case eventTeamsActions.EVENTTEAMS_ERROR400:
   case eventTeamsActions.EVENTTEAMS_ERROR500:

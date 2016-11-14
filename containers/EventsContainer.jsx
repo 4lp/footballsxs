@@ -39,14 +39,14 @@ export default class EventsContainer extends React.Component {
   }
 
   render() {
-    let {events} = this.props
-    if (events.isLoadingEvents || events.content === undefined) {
+    let {events, eventTeams, selectedTeam} = this.props
+    if (eventTeams.isLoadingEventTeams || eventTeams.content === undefined) {
       return this.renderLoading()
     }
     return (
     	<div>
-          {events.content !== undefined &&
-          <EventsContent content={events.content} />
+          {events.content !== undefined && eventTeams.content !== undefined &&
+          <EventsContent content={events.content} eventTeams={eventTeams} selectedTeam={selectedTeam}/>
           }
         </div>
     )
