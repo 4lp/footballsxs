@@ -6,10 +6,11 @@ export const GAMES_ERROR400 = "GAMES_ERROR400"
 export const GAMES_ERROR500 = "GAMES_ERROR500"
 export const GAMES_FAILURE = "GAMES_FAILURE"
 
-export function fetchGames() {
+export function fetchGames(event) {
   return function (dispatch) {
-    let url = "http://localhost:9292/event/en.2016_17/games/"
+    let url = "http://localhost:9292/event/" + event + "/games/"
     dispatch({type: GAMES})
+    console.log("fetching " + event)
     return request(
       url, {},
       (json) => { dispatch({type: GAMES_SUCCESS, res: json}) },

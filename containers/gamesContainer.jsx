@@ -11,8 +11,15 @@ export default class GamesContainer extends React.Component {
   componentDidMount() {
     let {dispatch, games} = this.props
     if (!games.isLoadingGames && games.content === undefined) {
-      dispatch(gamesActions.fetchGames())
+      dispatch(gamesActions.fetchGames(this.props.event.replace("/","_")))
     }
+  }
+
+  componentDidUpdate(prevProps) {
+    let {dispatch} = this.props
+    if (this.props.event !== prevProps.event) {
+    	dispatch(gamesActions.fetchGames(this.props.event.replace("/","_")))
+	}
   }
 
   renderLoading() {

@@ -1,6 +1,18 @@
 import React from "react"
+import GamesContainer from "../containers/gamesContainer"
 
 export default class EventsContent extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      selectedEvent: "",
+    };
+  }
+
+  setEvent(index) {
+    this.setState({ selectedEvent: index })
+  }
+
   filterEventsByTeam(teamid) {
     let eventArr = []
     for (let i = 0, len = this.props.eventTeams.eventTeams.length; i < len; i++) {
@@ -34,7 +46,7 @@ export default class EventsContent extends React.Component {
       }
 
       let node = (
-        <li>{res[1]} {res[2]}</li>
+        <li onClick={() => this.setEvent(item)}>{res[1]} {res[2]}</li>
       )
       contentNodes.push(node)
     })
@@ -47,6 +59,7 @@ export default class EventsContent extends React.Component {
             {contentNodes}
           </ul>
         </div>
+        { this.state.selectedEvent ? <GamesContainer team={this.props.selectedTeam} event={this.state.selectedEvent} /> : null}
       </div>
     )
   }
