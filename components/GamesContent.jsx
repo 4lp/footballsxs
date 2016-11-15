@@ -1,25 +1,57 @@
 import React from "react"
 
 export default class GamesContent extends React.Component {
-  render() {
-    let {content} = this.props
-    let contentNodes = []
-    content.games.forEach((item, index) => {
-      let node = (
-        <div key={item.id}>
-        	<ul>
-        	<li>game={item.id}</li>
-        	<li>team1={item.team1}</li>
-        	<li>team2={item.team2}</li>
-        	<li>team1score={item.team1score}</li>
-        	<li>team2score={item.team2score}</li>
-        	</ul>
-        </div>
-      )
-      contentNodes.push(node)
-    })
+	resolveTeamName(teamid) {
+		let teamName = null
+		this.props.teams.forEach((team) => {
+			if (team.id == teamid) {
+				teamName = team.title
+			}
+		})
+		return teamName
+	}
+
+	render() {
+	let {content} = this.props
+	let contentNodes = []
+	content.games.forEach((item, index) => {
+		let node = undefined
+		if (item.team1score === null || item.team2score === null) {
+			return
+		}
+		else if (item.team1 == this.props.team) {
+	  		node = (
+		        <tr key={item.id}>
+		        	<td>{this.resolveTeamName(item.team2)}</td>
+		        	<td>{item.team1score} - {item.team2score}</td>
+		        </tr>
+		
+	  		)
+	  	}
+	  	else if (item.team2 == this.props.team) {
+	  		node = (
+		        <tr key={item.id}>
+		        	<td>{this.resolveTeamName(item.team1)}</td>
+		        	<td>{item.team1score} - {item.team2score}</td>
+		        </tr>
+		
+	  		)
+	  	}
+	  contentNodes.push(node)
+	})
+
+	let teamName = this.resolveTeamName(this.props.team)
+
     return (
-      <div>{contentNodes}</div>
+    <div>
+      <p>{teamName}</p>
+      <table className="table">
+      <tbody>
+      	<tr><th>match</th><th>score</th></tr>
+      	{contentNodes}
+      </tbody>
+      </table>
+    </div>
     )
   }
 }

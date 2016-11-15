@@ -42,7 +42,7 @@ export default class GamesContainer extends React.Component {
     return (
     	<div>
           {games.content !== undefined &&
-          <GamesContent content={games.content} />
+          <GamesContent content={games.content} team={this.props.team} teams={this.props.teams} />
           }
         </div>
     )

@@ -26,7 +26,7 @@ export default class TeamsContent extends React.Component {
     })
 
     return (
-      <div><EventsContainer selectedTeam={this.state.selectedTeam}/>{contentNodes}</div>
+      <div><EventsContainer teams={this.props.content} selectedTeam={this.state.selectedTeam}/>{contentNodes}</div>
     )
   }
 }

@@ -59,7 +59,7 @@ export default class EventsContent extends React.Component {
             {contentNodes}
           </ul>
         </div>
-        { this.state.selectedEvent ? <GamesContainer team={this.props.selectedTeam} event={this.state.selectedEvent} /> : null}
+        { this.state.selectedEvent ? <GamesContainer team={this.props.selectedTeam} event={this.state.selectedEvent} teams={this.props.teams} /> : null}
       </div>
     )
   }
