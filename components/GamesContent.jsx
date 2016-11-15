@@ -22,7 +22,7 @@ export default class GamesContent extends React.Component {
 		else if (item.team1 == this.props.team) {
 	  		node = (
 		        <tr key={item.id}>
-		        	<td>{this.resolveTeamName(item.team2)}</td>
+		        	<td>{this.resolveTeamName(item.team2)} (H)</td>
 		        	<td>{item.team1score} - {item.team2score}</td>
 		        </tr>
 		
@@ -31,7 +31,7 @@ export default class GamesContent extends React.Component {
 	  	else if (item.team2 == this.props.team) {
 	  		node = (
 		        <tr key={item.id}>
-		        	<td>{this.resolveTeamName(item.team1)}</td>
+		        	<td>{this.resolveTeamName(item.team1)} (A)</td>
 		        	<td>{item.team1score} - {item.team2score}</td>
 		        </tr>
 		
