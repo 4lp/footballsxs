@@ -12,9 +12,7 @@ export default class EventsContent extends React.Component {
   setEvent(index) {
     if (this.state.selectedEvents == undefined) {
       let selectedEvents = []
-      console.log(selectedEvents)
       selectedEvents.push(index)
-      console.log(selectedEvents)
       this.setState({ selectedEvents: selectedEvents })
     } 
     else if (this.state.selectedEvents.includes(index)) {
@@ -22,15 +20,12 @@ export default class EventsContent extends React.Component {
       let selectedEvents = []
       selectedEvents = this.state.selectedEvents
       selectedEvents.splice(num, 1)
-      console.log(selectedEvents)
       this.setState({ selectedEvents: selectedEvents })
     }
     else if (this.state.selectedEvents.length < 2) {
       let selectedEvents = []
-      console.log(selectedEvents)
       selectedEvents = this.state.selectedEvents
       selectedEvents.push(index)
-      console.log(selectedEvents)
       this.setState({ selectedEvents: selectedEvents })
     }
     else {
@@ -38,7 +33,6 @@ export default class EventsContent extends React.Component {
       selectedEvents = this.state.selectedEvents
       selectedEvents.pop()
       selectedEvents.push(index)
-      console.log(selectedEvents)
       this.setState({ selectedEvents: selectedEvents })
     }
   }
@@ -83,7 +77,6 @@ export default class EventsContent extends React.Component {
     return (
       <div>
         <p>selected team = {this.props.selectedTeam}</p>
-        <p>selectedEvents = {typeof this.state.selectedEvents}</p>
         <div>
           events = 
           <ul>
