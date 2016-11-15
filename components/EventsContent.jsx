@@ -5,12 +5,42 @@ export default class EventsContent extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      selectedEvent: "",
+      selectedEvents: undefined,
     };
   }
 
   setEvent(index) {
-    this.setState({ selectedEvent: index })
+    if (this.state.selectedEvents == undefined) {
+      let selectedEvents = []
+      console.log(selectedEvents)
+      selectedEvents.push(index)
+      console.log(selectedEvents)
+      this.setState({ selectedEvents: selectedEvents })
+    } 
+    else if (this.state.selectedEvents.includes(index)) {
+      let num = this.state.selectedEvents.indexOf(index)
+      let selectedEvents = []
+      selectedEvents = this.state.selectedEvents
+      selectedEvents.splice(num, 1)
+      console.log(selectedEvents)
+      this.setState({ selectedEvents: selectedEvents })
+    }
+    else if (this.state.selectedEvents.length < 2) {
+      let selectedEvents = []
+      console.log(selectedEvents)
+      selectedEvents = this.state.selectedEvents
+      selectedEvents.push(index)
+      console.log(selectedEvents)
+      this.setState({ selectedEvents: selectedEvents })
+    }
+    else {
+      let selectedEvents =  []
+      selectedEvents = this.state.selectedEvents
+      selectedEvents.pop()
+      selectedEvents.push(index)
+      console.log(selectedEvents)
+      this.setState({ selectedEvents: selectedEvents })
+    }
   }
 
   filterEventsByTeam(teamid) {
@@ -53,13 +83,14 @@ export default class EventsContent extends React.Component {
     return (
       <div>
         <p>selected team = {this.props.selectedTeam}</p>
+        <p>selectedEvents = {typeof this.state.selectedEvents}</p>
         <div>
           events = 
           <ul>
             {contentNodes}
           </ul>
         </div>
-        { this.state.selectedEvent ? <GamesContainer team={this.props.selectedTeam} event={this.state.selectedEvent} teams={this.props.teams} /> : null}
+        { this.state.selectedEvent ? <GamesContainer team={this.props.selectedTeam} events={this.state.selectedEvents} teams={this.props.teams} /> : null}
       </div>
     )
   }
