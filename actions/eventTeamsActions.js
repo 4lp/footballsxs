@@ -45,6 +45,7 @@ export function fetchEventTeams() {
     return dispatch(fetchEvents()).then(() => {
       const fetchedEvents = getState().events.content
       fetchedEvents.forEach((event) => {
+        console.log("fetching" + event)
         return dispatch(eventTeams(event.key.replace( "/", "_" )))
       })
     })

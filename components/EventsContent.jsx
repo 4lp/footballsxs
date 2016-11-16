@@ -70,7 +70,7 @@ export default class EventsContent extends React.Component {
       }
 
       let node = (
-        <li onClick={() => this.setEvent(item)}>{res[1]} {res[2]}</li>
+        <li onClick={() => this.setEvent(item)} key={item}>{res[1]} {res[2]}</li>
       )
       contentNodes.push(node)
     })
@@ -83,7 +83,7 @@ export default class EventsContent extends React.Component {
             {contentNodes}
           </ul>
         </div>
-        { this.state.selectedEvent ? <GamesContainer team={this.props.selectedTeam} events={this.state.selectedEvents} teams={this.props.teams} /> : null}
+        { this.state.selectedEvents ? <GamesContainer key={this.state.selectedEvents} team={this.props.selectedTeam} selectedEvents={this.state.selectedEvents} teams={this.props.teams} /> : null}
       </div>
     )
   }

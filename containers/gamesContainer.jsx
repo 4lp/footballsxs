@@ -10,21 +10,25 @@ import { connect } from "react-redux"
 export default class GamesContainer extends React.Component {
   componentDidMount() {
     let {dispatch, games} = this.props
-    if (!games.isLoadingGames && games.content === undefined) {
-    	this.props.events.forEach((event) => {
+    if (!games.isLoadingGames) {
+    	this.props.selectedEvents.forEach((event) => {
+    		console.log("1" + event)
       		dispatch(gamesActions.fetchGames(event.replace("/","_")))
     	})
     }
   }
 
-  componentDidUpdate(prevProps) {
-    let {dispatch} = this.props
-    this.props.events.forEach((event) => {
-	    if (!prevProps.events.includes(event)) {
-	    	dispatch(gamesActions.fetchGames(event.replace("/","_")))
-		}
-	})
-  }
+ //  componentDidUpdate(prevProps) {
+ //    let {dispatch} = this.props
+ //    console.log("prevProps = " + prevProps.selectedEvents)
+ //    console.log("this.props = " + this.props.selectedEvents)
+ //    this.props.selectedEvents.forEach((event) => {
+	//     if (!prevProps.selectedEvents.includes(event)) {
+	//     	console.log("2" + event)
+	//     	dispatch(gamesActions.fetchGames(event.replace("/","_")))
+	// 	}
+	// })
+ //  }
 
   renderLoading() {
     return (
@@ -39,14 +43,15 @@ export default class GamesContainer extends React.Component {
   }
 
   render() {
-    let {games} = this.props
+    let {games, selectedEvents} = this.props
     if (games.isLoadingGames || games.content === undefined) {
       return this.renderLoading()
     }
     return (
     	<div>
+    		selectedEvents = {selectedEvents.map((selectedEvent) => <div key={selectedEvent}>{selectedEvent}</div>)}
           {games.content !== undefined &&
-          <GamesContent content={games.content} team={this.props.team} teams={this.props.teams} />
+          <GamesContent content={games.content} team={this.props.team} teams={this.props.teams} selectedEvents={selectedEvents} />
           }
         </div>
     )
