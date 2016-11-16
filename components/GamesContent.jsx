@@ -1,8 +1,13 @@
 import React from "react"
 
-const outerNodes = []
-
 export default class GamesContent extends React.Component {
+	constructor(props){
+	    super(props);
+	    this.state = {
+	      outerNodes: [],
+	    };
+  	}
+
 	resolveTeamName(teamid) {
 		let teamName = null
 		this.props.teams.forEach((team) => {
@@ -14,6 +19,11 @@ export default class GamesContent extends React.Component {
 	}
 
 	renderLoading() {
+		while (this.state.outerNodes.length > 0) {
+			this.state.outerNodes.pop()
+		}
+		console.log ("outerNodes len =" + this.state.outerNodes.length)
+		console.log ("outerNodes =" + this.state.outerNodes)
 		return <div>no events!</div>
 	}
 
@@ -47,34 +57,35 @@ export default class GamesContent extends React.Component {
 	  	}
 	  	contentNodes.push(node)
 	})
-	if (outerNodes.length < 2){
-		outerNodes.push(contentNodes)
+	if (this.state.outerNodes.length < 2){
+		this.state.outerNodes.push(contentNodes)
 	}
 	else if (this.props.selectedEvents.length == 0) {
-		outerNodes.pop()
-		if (outerNodes.length == 1)	{
-			outerNodes.pop()
+		this.state.outerNodes.pop()
+		if (this.state.outerNodes.length == 1)	{
+			this.state.outerNodes.pop()
 		}
 	}
 	else {
-		outerNodes.pop()
-		outerNodes.push(contentNodes)
+		this.state.outerNodes.pop()
+		this.state.outerNodes.push(contentNodes)
 	}
 
 	let teamName = this.resolveTeamName(this.props.team)
-	console.log("contentNodes =" + {outerNodes})
 	if (this.props.selectedEvents.length == 0) {
 		return this.renderLoading()
 	}
+	console.log ("outerNodes len =" + this.state.outerNodes.length)
+	console.log ("outerNodes =" + this.state.outerNodes)
     return (
     <div>
       <p>{teamName}</p>
-      <p>outerNodes = {outerNodes}</p>
-      <p>outerNodes type = {typeof(outerNodes)}</p>
+      <p>outerNodes = {this.state.outerNodes}</p>
+      <p>outerNodes type = {typeof(this.state.outerNodes)}</p>
       <table className="table">
       <tbody>
       	<tr><th>match</th><th>score</th><th>event</th></tr>
-      	{outerNodes}
+      	{this.state.outerNodes}
       </tbody>
       </table>
     </div>
