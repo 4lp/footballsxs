@@ -22,9 +22,23 @@ export default class GamesContent extends React.Component {
 		while (this.state.outerNodes.length > 0) {
 			this.state.outerNodes.pop()
 		}
-		console.log ("outerNodes len =" + this.state.outerNodes.length)
-		console.log ("outerNodes =" + this.state.outerNodes)
 		return <div>no events!</div>
+	}
+
+	renderTables() {
+		let tableNodes = []
+		this.state.outerNodes.forEach((node) => {
+			let newNode = (
+				<table className="table" key={node}>
+			      <tbody>
+			      	<tr><th>match</th><th>score</th><th>event</th></tr>
+			      	{node}
+			      </tbody>
+			    </table>
+		    )
+		tableNodes.push(newNode)
+		})
+		return tableNodes
 	}
 
 	render() {
@@ -75,19 +89,10 @@ export default class GamesContent extends React.Component {
 	if (this.props.selectedEvents.length == 0) {
 		return this.renderLoading()
 	}
-	console.log ("outerNodes len =" + this.state.outerNodes.length)
-	console.log ("outerNodes =" + this.state.outerNodes)
     return (
     <div>
       <p>{teamName}</p>
-      <p>outerNodes = {this.state.outerNodes}</p>
-      <p>outerNodes type = {typeof(this.state.outerNodes)}</p>
-      <table className="table">
-      <tbody>
-      	<tr><th>match</th><th>score</th><th>event</th></tr>
-      	{this.state.outerNodes}
-      </tbody>
-      </table>
+      {this.renderTables()}
     </div>
     )
   }

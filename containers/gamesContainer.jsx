@@ -12,7 +12,6 @@ export default class GamesContainer extends React.Component {
     let {dispatch, games} = this.props
     if (!games.isLoadingGames) {
     	this.props.selectedEvents.forEach((event) => {
-    		console.log("1" + event)
       		dispatch(gamesActions.fetchGames(event.replace("/","_")))
     	})
     }
@@ -20,11 +19,8 @@ export default class GamesContainer extends React.Component {
 
  //  componentDidUpdate(prevProps) {
  //    let {dispatch} = this.props
- //    console.log("prevProps = " + prevProps.selectedEvents)
- //    console.log("this.props = " + this.props.selectedEvents)
  //    this.props.selectedEvents.forEach((event) => {
 	//     if (!prevProps.selectedEvents.includes(event)) {
-	//     	console.log("2" + event)
 	//     	dispatch(gamesActions.fetchGames(event.replace("/","_")))
 	// 	}
 	// })
