@@ -62,18 +62,20 @@ export default class TableContent extends React.Component {
 			if (item[0].team1score === null || item[0].team2score === null) {
 				return
 			}
-
 			//check if team 1 is selected team
 			else if (item[0].team1 === this.props.team) {
 				//check list of games for same fixture different season
 				contentList.forEach((game) => {
+					if (game[0].team1score === null || game[0].team2score === null) {
+						return
+					}
 					//if fixture is the same put them in the same row
-					if (item[1] === game[1]) {
+					else if (item[1] === game[1] && item[2] !== game[2]) {
 						node = (
-							<tr key={item[1] + i}>
-					        	<td>{this.props.resolveTeamName(item[0].team2)} (H)</td>
-					        	<td>{item[0].team1score} - {item[0].team2score} {item[2]}</td>
-					        	<td>{game[0].team1score} - {game[0].team2score} {game[2]}</td>
+							<tr key={item[1]}>
+					        	<td>{this.props.resolveTeamName(item[0].team2)} (H) {i}</td>
+					        	<td className={(item[0].team1score - item[0].team2score) > 1 ? "success" : (item[0].team1score - item[0].team2score) === 0 ? "warning" : "danger"}>{item[0].team1score} - {item[0].team2score} {item[2]} {i}</td>
+					        	<td className={(game[0].team1score - game[0].team2score) > 1 ? "success" : (game[0].team1score - game[0].team2score) === 0 ? "warning" : "danger"}>{game[0].team1score} - {game[0].team2score} {game[2]} {i}</td>
 					        </tr>
 							)
 					}
@@ -81,19 +83,19 @@ export default class TableContent extends React.Component {
 					else if (item[1] !== game[1]) {
 						if (i === 0) {
 							node = (
-						        <tr key={item[1] + i}>
+						        <tr key={item[1]}>
 						        	<td>{this.props.resolveTeamName(item[0].team2)} (H)</td>
-						        	<td>{item[0].team1score} - {item[0].team2score} {item[2]} single </td>
+						        	<td className={(item[0].team1score - item[0].team2score) > 1 ? "success" : "warning"}>{item[0].team1score} - {item[0].team2score} {item[2]} single </td>
 						        	<td>blank</td>
 						        </tr>
 						    )
 						}
 						else if (i === 1) {
 							node = (
-						        <tr key={item[1] + i}>
+						        <tr key={item[1]}>
 						        	<td>{this.props.resolveTeamName(item[0].team2)} (H)</td>
 						        	<td>blank</td>
-						        	<td>{item[0].team1score} - {item[0].team2score} {item[2]} single </td>
+						        	<td className={(item[0].team1score - item[0].team2score) > 1 ? "success" : "warning"}>{item[0].team1score} - {item[0].team2score} {item[2]} single </td>
 						        </tr>		
 						    )					
 						}
@@ -105,13 +107,16 @@ export default class TableContent extends React.Component {
 		  	else if (item[0].team2 === this.props.team) {
 		  		//check list of games for same fixture different season
 				contentList.forEach((game) => {
+					if (game[0].team1score === null || game[0].team2score === null) {
+						return
+					}
 					//if fixture is the same put them in the same row
-					if (item[1] === game[1]) {
+					if (item[1] === game[1] && item[2] !== game[2]) {
 						node = (
-							<tr key={item[1] + i}>
-					        	<td>{this.props.resolveTeamName(item[0].team1)} (A)</td>
-					        	<td>{item[0].team1score} - {item[0].team2score} {item[2]}</td>
-					        	<td>{game[0].team1score} - {game[0].team2score} {game[2]}</td>
+							<tr key={item[1]}>
+					        	<td>{this.props.resolveTeamName(item[0].team1)} (A) {i}</td>
+					        	<td className={(item[0].team2score - item[0].team1score) > 1 ? "success" : (item[0].team2score - item[0].team1score) === 0 ? "warning" : "danger"}>{item[0].team1score} - {item[0].team2score} {item[2]} {i}</td>
+					        	<td className={(game[0].team2score - game[0].team1score) > 1 ? "success" : (game[0].team2score - game[0].team1score) === 0 ? "warning" : "danger"}>{game[0].team1score} - {game[0].team2score} {game[2]} {i}</td>
 					        </tr>
 							)
 					}
@@ -119,19 +124,19 @@ export default class TableContent extends React.Component {
 					else if (item[1] !== game[1]) {
 						if (i === 0) {
 							node = (
-						        <tr key={item[1] + i}>
+						        <tr key={item[1]}>
 						        	<td>{this.props.resolveTeamName(item[0].team1)} (A)</td>
-						        	<td>{item[0].team1score} - {item[0].team2score} {item[2]} single </td>
+						        	<td className={(item[0].team2score - item[0].team1score) > 1 ? "success" : "warning"}>{item[0].team1score} - {item[0].team2score} {item[2]} single </td>
 						        	<td>blank</td>
 						        </tr>
 			  					)
 						}
 						else if (i === 1) {
 							node = (
-						        <tr key={item[1] + i}>
+						        <tr key={item[1]}>
 						        	<td>{this.props.resolveTeamName(item[0].team2)} (H)</td>
 						        	<td>blank</td>
-						        	<td>{item[0].team1score} - {item[0].team2score} {item[2]} single </td>
+						        	<td className={(item[0].team2score - item[0].team1score) > 1 ? "success" : "warning"}>{item[0].team1score} - {item[0].team2score} {item[2]} single </td>
 						        </tr>		
 						    )					
 						}
