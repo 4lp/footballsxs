@@ -1,10 +1,11 @@
 import React from "react"
+import TableContent from "./TableContent"
 
 export default class GamesContent extends React.Component {
 	constructor(props){
 	    super(props);
 	    this.state = {
-	      outerNodes: [],
+	      tagged: [],
 	    };
   	}
 
@@ -19,80 +20,84 @@ export default class GamesContent extends React.Component {
 	}
 
 	renderLoading() {
-		while (this.state.outerNodes.length > 0) {
-			this.state.outerNodes.pop()
-		}
+		// while (this.state.outerNodes.length > 0) {
+		// 	this.state.outerNodes.pop()
+		// }
 		return <div>no events!</div>
 	}
 
-	renderTables() {
-		let tableNodes = []
-		this.state.outerNodes.forEach((node) => {
-			let newNode = (
-				<table className="table" key={node}>
-			      <tbody>
-			      	<tr><th>match</th><th>score</th><th>event</th></tr>
-			      	{node}
-			      </tbody>
-			    </table>
-		    )
-		tableNodes.push(newNode)
+	renderTableHeading() {
+		let headingArr = []
+		let headingNode = []
+		let i = 0
+		this.props.selectedEvents.forEach((event) => {
+			headingNode.push(<th key={i}>{event}</th>)
+			i++
 		})
-		return tableNodes
+		headingArr.push(<tr><th>match</th>{headingNode}</tr>)
+		return headingArr
+	}
+
+	//Tagging games to identify duplicate fixtures i.e. same team 1, same team 2, different events
+	tagGames(content) {
+		let taggedContent = []
+		content.games.forEach((game) => {
+				let node = []
+				node.push(game)
+		        node.push("team1:"+game.team1+"team2:"+game.team2)
+		        node.push(content.key)
+		        taggedContent.push(node)	
+			})
+		return taggedContent
+	}
+
+	storeGamesInState(games) {
+		let oldGames = this.state.tagged
+		oldGames.push(games)
+		this.setState({tagged: oldGames})
+	}
+
+	componentWillMount() {
+		let taggedGames = this.tagGames(this.props.content)
+		this.storeGamesInState(taggedGames)
+	}
+
+	componentWillReceiveProps(nextProps, nextState) {
+		let taggedGames = this.tagGames(nextProps.content)
+		this.storeGamesInState(taggedGames)
+	}
+
+	renderTableContent() {
+		let taggedNodes = []
+		//flatten this.state.tagged
+		this.state.tagged.forEach((item) => {
+			item.forEach((game) => {
+				taggedNodes.push(game)
+			})
+		})
+		return taggedNodes
 	}
 
 	render() {
-	let {content} = this.props
-	let contentNodes = []
-	content.games.forEach((item, index) => {
-		let node = undefined
-		if (item.team1score === null || item.team2score === null) {
-			return
-		}
-		else if (item.team1 == this.props.team) {
-	  		node = (
-		        <tr key={item.id}>
-		        	<td>{this.resolveTeamName(item.team2)} (H)</td>
-		        	<td>{item.team1score} - {item.team2score}</td>
-		        	<td>{content.key}</td>
-		        </tr>
-		
-	  		)
-	  	}
-	  	else if (item.team2 == this.props.team) {
-	  		node = (
-		        <tr key={item.id}>
-		        	<td>{this.resolveTeamName(item.team1)} (A)</td>
-		        	<td>{item.team1score} - {item.team2score}</td>
-		        	<td>{content.key}</td>
-		        </tr>
-		
-	  		)
-	  	}
-	  	contentNodes.push(node)
-	})
-	if (this.state.outerNodes.length < 2){
-		this.state.outerNodes.push(contentNodes)
-	}
-	else if (this.props.selectedEvents.length == 0) {
-		this.state.outerNodes.pop()
-		if (this.state.outerNodes.length == 1)	{
-			this.state.outerNodes.pop()
-		}
-	}
-	else {
-		this.state.outerNodes.pop()
-		this.state.outerNodes.push(contentNodes)
-	}
-
+	let tableContent = this.renderTableContent()	
+	let heading = this.renderTableHeading()
 	let teamName = this.resolveTeamName(this.props.team)
+
 	if (this.props.selectedEvents.length == 0) {
 		return this.renderLoading()
 	}
+
     return (
     <div>
-      <p>{teamName}</p>
-      {this.renderTables()}
+     	<p>{teamName}</p>
+      	<TableContent 
+      		tableContent={tableContent} 
+      		heading={heading} 
+      		key={this.props.selectedEvents.length} 
+      		selectedEvents={this.props.selectedEvents}
+      		team={this.props.team}
+      		resolveTeamName={this.resolveTeamName.bind(this)}
+      	/>
     </div>
     )
   }

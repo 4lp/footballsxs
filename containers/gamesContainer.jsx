@@ -17,15 +17,6 @@ export default class GamesContainer extends React.Component {
     }
   }
 
- //  componentDidUpdate(prevProps) {
- //    let {dispatch} = this.props
- //    this.props.selectedEvents.forEach((event) => {
-	//     if (!prevProps.selectedEvents.includes(event)) {
-	//     	dispatch(gamesActions.fetchGames(event.replace("/","_")))
-	// 	}
-	// })
- //  }
-
   renderLoading() {
     return (
       <div className="container">
