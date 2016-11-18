@@ -71,11 +71,13 @@ export default class TableContent extends React.Component {
 					}
 					//if fixture is the same put them in the same row
 					else if (item[1] === game[1] && item[2] !== game[2]) {
+						let t1res = item[0].team1score - item[0].team2score
+						let t2res = game[0].team1score - game[0].team2score
 						node = (
 							<tr key={item[1]}>
 					        	<td>{this.props.resolveTeamName(item[0].team2)} (H) {i}</td>
-					        	<td className={(item[0].team1score - item[0].team2score) > 1 ? "success" : (item[0].team1score - item[0].team2score) === 0 ? "warning" : "danger"}>{item[0].team1score} - {item[0].team2score} {item[2]} {i}</td>
-					        	<td className={(game[0].team1score - game[0].team2score) > 1 ? "success" : (game[0].team1score - game[0].team2score) === 0 ? "warning" : "danger"}>{game[0].team1score} - {game[0].team2score} {game[2]} {i}</td>
+					        	<td className={t1res >= 1 ? "success" : t1res === 0 ? "warning" : t1res <= 1 ? "danger" : null}>{item[0].team1score} - {item[0].team2score} {item[2]} {i}</td>
+					        	<td className={t2res >= 1 ? "success" : t2res === 0 ? "warning" : t2res <= 1 ? "danger" : null}>{game[0].team1score} - {game[0].team2score} {game[2]} {i}</td>
 					        </tr>
 							)
 					}
@@ -112,11 +114,13 @@ export default class TableContent extends React.Component {
 					}
 					//if fixture is the same put them in the same row
 					if (item[1] === game[1] && item[2] !== game[2]) {
+						let t1res = item[0].team2score - item[0].team1score
+						let t2res = game[0].team2score - game[0].team1score
 						node = (
 							<tr key={item[1]}>
 					        	<td>{this.props.resolveTeamName(item[0].team1)} (A) {i}</td>
-					        	<td className={(item[0].team2score - item[0].team1score) > 1 ? "success" : (item[0].team2score - item[0].team1score) === 0 ? "warning" : "danger"}>{item[0].team1score} - {item[0].team2score} {item[2]} {i}</td>
-					        	<td className={(game[0].team2score - game[0].team1score) > 1 ? "success" : (game[0].team2score - game[0].team1score) === 0 ? "warning" : "danger"}>{game[0].team1score} - {game[0].team2score} {game[2]} {i}</td>
+					        	<td className={t1res >= 1 ? "success" : t1res === 0 ? "warning" : t1res <= 1 ? "danger" : null}>{item[0].team1score} - {item[0].team2score} {item[2]} {i}</td>
+					        	<td className={t2res >= 1 ? "success" : t2res === 0 ? "warning" : t2res <= 1 ? "danger" : null}>{game[0].team1score} - {game[0].team2score} {game[2]} {i}</td>
 					        </tr>
 							)
 					}
