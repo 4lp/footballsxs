@@ -37,7 +37,7 @@ export default class TableContent extends React.Component {
 					node = (
 				        <tr key={item[1] + i}>
 				        	<td>{this.props.resolveTeamName(item[0].team1)} (A)</td>
-				        	<td className={t1res >= 1 ? "success" : t1res === 0 ? "warning" : t1res <= 1 ? "danger" : null}>{item[0].team1score} - {item[0].team2score}</td>
+				        	<td className={t1res >= 1 ? "success" : t1res === 0 ? "warning" : t1res <= 1 ? "danger" : null}>{item[0].team2score} - {item[0].team1score}</td>
 				        </tr>
 	  					)
 			}
@@ -79,7 +79,7 @@ export default class TableContent extends React.Component {
 						let t2res = game[0].team1score - game[0].team2score
 						node = (
 							<tr key={item[1]}>
-					        	<td>{this.props.resolveTeamName(item[0].team2)} (H) {i}</td>
+					        	<td>{this.props.resolveTeamName(item[0].team2)} (H)</td>
 					        	<td className={t1res >= 1 ? "success" : t1res === 0 ? "warning" : t1res <= 1 ? "danger" : null}>{item[0].team1score} - {item[0].team2score}</td>
 					        	<td className={t2res >= 1 ? "success" : t2res === 0 ? "warning" : t2res <= 1 ? "danger" : null}>{game[0].team1score} - {game[0].team2score}</td>
 					        </tr>
@@ -91,7 +91,7 @@ export default class TableContent extends React.Component {
 						let t2res = game[0].team1score - game[0].team2score
 						node = (
 							<tr key={item[1]}>
-					        	<td>{this.props.resolveTeamName(item[0].team2)} (H) {i}</td>
+					        	<td>{this.props.resolveTeamName(item[0].team2)} (H)</td>
 					      		<td className={t2res >= 1 ? "success" : t2res === 0 ? "warning" : t2res <= 1 ? "danger" : null}>{game[0].team1score} - {game[0].team2score}</td>
 					        	<td className={t1res >= 1 ? "success" : t1res === 0 ? "warning" : t1res <= 1 ? "danger" : null}>{item[0].team1score} - {item[0].team2score}</td>
 					        </tr>
@@ -103,9 +103,9 @@ export default class TableContent extends React.Component {
 						let t2res = game[0].team2score - game[0].team1score
 						node = (
 							<tr key={item[1]}>
-					        	<td>{this.props.resolveTeamName(item[0].team1)} (A) {i}</td>
-					        	<td className={t1res >= 1 ? "success" : t1res === 0 ? "warning" : t1res <= 1 ? "danger" : null}>{item[0].team1score} - {item[0].team2score}</td>
-					        	<td className={t2res >= 1 ? "success" : t2res === 0 ? "warning" : t2res <= 1 ? "danger" : null}>{game[0].team1score} - {game[0].team2score}</td>
+					        	<td>{this.props.resolveTeamName(item[0].team1)} (A)</td>
+					        	<td className={t1res >= 1 ? "success" : t1res === 0 ? "warning" : t1res <= 1 ? "danger" : null}>{item[0].team2score} - {item[0].team1score}</td>
+					        	<td className={t2res >= 1 ? "success" : t2res === 0 ? "warning" : t2res <= 1 ? "danger" : null}>{game[0].team2score} - {game[0].team1score}</td>
 					        </tr>
 						)
 						j++
@@ -115,9 +115,9 @@ export default class TableContent extends React.Component {
 						let t2res = game[0].team2score - game[0].team1score
 						node = (
 							<tr key={item[1]}>
-					        	<td>{this.props.resolveTeamName(item[0].team1)} (A) {i}</td>
-					        	<td className={t2res >= 1 ? "success" : t2res === 0 ? "warning" : t2res <= 1 ? "danger" : null}>{game[0].team1score} - {game[0].team2score}</td>
-					        	<td className={t1res >= 1 ? "success" : t1res === 0 ? "warning" : t1res <= 1 ? "danger" : null}>{item[0].team1score} - {item[0].team2score}</td>
+					        	<td>{this.props.resolveTeamName(item[0].team1)} (A)</td>
+					        	<td className={t2res >= 1 ? "success" : t2res === 0 ? "warning" : t2res <= 1 ? "danger" : null}>{game[0].team2score} - {game[0].team1score}</td>
+					        	<td className={t1res >= 1 ? "success" : t1res === 0 ? "warning" : t1res <= 1 ? "danger" : null}>{item[0].team2score} - {item[0].team1score}</td>
 					        </tr>
 						)
 						j++
@@ -152,7 +152,7 @@ export default class TableContent extends React.Component {
 						node = (
 					        <tr key={item[1]}>
 					        	<td>{this.props.resolveTeamName(item[0].team1)} (A)</td>
-					        	<td className={t1res >= 1 ? "success" : t1res === 0 ? "warning" : t1res <= 1 ? "danger" : null}>{item[0].team1score} - {item[0].team2score}</td>
+					        	<td className={t1res >= 1 ? "success" : t1res === 0 ? "warning" : t1res <= 1 ? "danger" : null}>{item[0].team2score} - {item[0].team1score}</td>
 					        	<td></td>
 					        </tr>
 		  				)
@@ -162,7 +162,7 @@ export default class TableContent extends React.Component {
 					        <tr key={item[1]}>
 					        	<td>{this.props.resolveTeamName(item[0].team1)} (A)</td>
 					        	<td></td>
-					        	<td className={t1res >= 1 ? "success" : t1res === 0 ? "warning" : t1res <= 1 ? "danger" : null}>{item[0].team1score} - {item[0].team2score}</td>
+					        	<td className={t1res >= 1 ? "success" : t1res === 0 ? "warning" : t1res <= 1 ? "danger" : null}>{item[0].team2score} - {item[0].team1score}</td>
 					        </tr>		
 					    )					
 					}
@@ -176,7 +176,6 @@ export default class TableContent extends React.Component {
 				}
 			})
 			i++
-			// console.log("j="+j)
 		})
 
 		//push n' pop from outernodes to load table content to be passed
