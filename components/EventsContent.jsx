@@ -53,6 +53,7 @@ export default class EventsContent extends React.Component {
     let contentNodes = []
     let eventNodes =  this.filterEventsByTeam(this.props.selectedTeam)
     //Translates league keys to human readable format ONLY FOR ENGLISH LEAGUES SO FAR - wrap in switch statement for res[0] === "en", "at", "es"...
+    //This needs to be split off, turned into function, passed down as props
     eventNodes.forEach((item) => {
       let res = item.split(".")
       if (res.length === 2) {

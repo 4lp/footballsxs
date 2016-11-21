@@ -54,7 +54,20 @@ export default class GamesContent extends React.Component {
 	storeGamesInState(games) {
 		let oldGames = this.state.tagged
 		oldGames.push(games)
+		let deDupedGames = this.dedupeGames(oldGames)
 		this.setState({tagged: oldGames})
+	}
+
+	dedupeGames(games) {
+		let deDupedGames = []
+		games.forEach((game) => {
+			games.forEach((game2) => {
+				if (game[0].id !== game2[0].id) {
+					deDupedGames.push(game)
+				}
+			})
+		})
+		return deDupedGames
 	}
 
 	componentWillMount() {
