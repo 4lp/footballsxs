@@ -56,9 +56,22 @@ export default class TableContent extends React.Component {
 		}
 	}
 
+	addPoints(points, result) {
+		if (result === 0) {
+			points = points + 1
+		}
+		else if (result >= 1) {
+			points = points + 3
+		}
+		return points
+	}
+
 	makeRows(contentList) {
 		let contentNodes = []
 		let i = 0
+		let points = []
+		let points0 = 0
+		let points1 = 0
 
 		contentList.forEach((item) => {
 			//serves as a tag to let the rest of the loop know not to override node if match
@@ -85,6 +98,7 @@ export default class TableContent extends React.Component {
 					        </tr>
 						)
 						j++
+						points0 = this.addPoints(points0, t1res)
 					}
 					else if (item[1] === game[1] && item[0].id !== game[0].id && item[0].team1 === this.props.team && item[2] === this.props.selectedEvents[1]) {
 						let t1res = item[0].team1score - item[0].team2score
@@ -97,6 +111,7 @@ export default class TableContent extends React.Component {
 					        </tr>
 						)
 						j++
+						points1 = this.addPoints(points1, t1res)
 					}
 					else if (item[1] === game[1] && item[0].id !== game[0].id && item[0].team2 === this.props.team && item[2] === this.props.selectedEvents[0]) {
 						let t1res = item[0].team2score - item[0].team1score
@@ -109,6 +124,7 @@ export default class TableContent extends React.Component {
 					        </tr>
 						)
 						j++
+						points0 = this.addPoints(points0, t1res)
 					}
 					else if (item[1] === game[1] && item[0].id !== game[0].id && item[0].team2 === this.props.team && item[2] === this.props.selectedEvents[1]) {
 						let t1res = item[0].team2score - item[0].team1score
@@ -121,6 +137,7 @@ export default class TableContent extends React.Component {
 					        </tr>
 						)
 						j++
+						points1 = this.addPoints(points1, t1res)
 					}
 				})
 				//check if team 1 is selected team give this game its own row
@@ -193,6 +210,9 @@ export default class TableContent extends React.Component {
 			this.state.outerNodes.push(contentNodes)
 		}
 
+	points.push(points0, points1)
+	return points
+
 	}
 
 	renderLoading() {
@@ -208,13 +228,15 @@ export default class TableContent extends React.Component {
 		}
 
 	render(){
+		let points = 0
 		{this.props.selectedEvents.length === 1 ? this.makeSingleTable(this.props.tableContent) : null}
-		{this.props.selectedEvents.length === 2 ? this.makeRows(this.props.tableContent) : null}
+		{this.props.selectedEvents.length === 2 ? points = this.makeRows(this.props.tableContent) : null}
 		if (this.state.outerNodes.length !== this.props.selectedEvents.length) {
       		return this.renderLoading()
    		}
 		return(
 		<div>
+			{this.props.selectedEvents.length === 2 ? <p>points difference (only for same fixtures) = {points[0] - points[1]}</p> : null}
 			<table className="table">
 					<tbody>
 						{this.props.heading}

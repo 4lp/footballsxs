@@ -38,7 +38,12 @@ export default class GamesContainer extends React.Component {
     	<div>
     		<p>compare {selectedEvents[0]} against {selectedEvents[1] ? selectedEvents[1] : null}</p>
           {games.content !== undefined &&
-          <GamesContent content={games.content} team={this.props.team} teams={this.props.teams} selectedEvents={selectedEvents} />
+          <GamesContent 
+          	content={games.content} 
+          	team={this.props.team} 
+          	teams={this.props.teams} 
+          	selectedEvents={selectedEvents} 
+          />
           }
         </div>
     )
