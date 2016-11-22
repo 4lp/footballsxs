@@ -27,7 +27,6 @@ class App extends React.Component {
 	render () {
 		return (
 			<div>
-				<p>Select a team to begin</p>
 				<Provider store={store}>
 					<TeamsContainer />
 				</Provider>

@@ -6,11 +6,16 @@ export default class TeamsContent extends React.Component {
     super(props);
     this.state = {
       selectedTeam: 0,
+      isShowingTeams: false,
     };
   }
 
   setTeam(index) {
     this.setState({ selectedTeam: index })
+  }
+
+  showTeams() {
+    this.setState({ isShowingTeams: !this.state.isShowingTeams })
   }
 
   compareKeys(a, b) {
@@ -23,7 +28,7 @@ export default class TeamsContent extends React.Component {
     content.forEach((item) => {
       let node = (
         <div key={item.title}>
-        	<div onClick={() => this.setTeam(item.id)}>{item.title}</div>
+        	<div onClick={() => {this.setTeam(item.id); this.showTeams()}}>{item.title}</div>
         </div>
       )
       contentNodes.push(node)
@@ -33,9 +38,8 @@ export default class TeamsContent extends React.Component {
 
     return (
       <div>
-        {sortedNodes.map((node) =>{
-          return node
-        })}
+        <button className="btn" onClick={() => this.showTeams()}>selct a team</button>
+        {this.state.isShowingTeams === true ? sortedNodes.map((node) => node) : null}
         <EventsContainer teams={this.props.content} 
                             selectedTeam={this.state.selectedTeam}
         />
