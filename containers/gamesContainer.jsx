@@ -29,11 +29,28 @@ export default class GamesContainer extends React.Component {
     )
   }
 
+  renderNoGames() {
+  	let {selectedEvents} = this.props
+    return (
+      <div className="container">
+        <div className="row">
+          <div className="col-md-10 col-xs-12">
+          	<p>compare {selectedEvents[0]} against {selectedEvents[1] ? selectedEvents[1] : null}</p>
+            <p>No games for your event :( please consider contributing match data at <a href="https://github.com/openfootball" target="_blank">https://github.com/openfootball</a></p>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
   render() {
     let {games, selectedEvents} = this.props
     if (games.isLoadingGames || games.content === undefined) {
       return this.renderLoading()
     }
+    else if (games.content.games.length === 0 || games.content === undefined) {
+    	return this.renderNoGames()
+    } 
     return (
     	<div>
     		<p>compare {selectedEvents[0]} against {selectedEvents[1] ? selectedEvents[1] : null}</p>

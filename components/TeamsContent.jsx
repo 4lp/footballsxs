@@ -13,20 +13,33 @@ export default class TeamsContent extends React.Component {
     this.setState({ selectedTeam: index })
   }
 
+  compareKeys(a, b) {
+    return a.key.localeCompare(b.key)
+  }
+
   render() {
     let {content} = this.props
     let contentNodes = []
     content.forEach((item) => {
       let node = (
-        <div key={item.key}>
+        <div key={item.title}>
         	<div onClick={() => this.setTeam(item.id)}>{item.title}</div>
         </div>
       )
       contentNodes.push(node)
     })
 
+    let sortedNodes = contentNodes.sort(this.compareKeys)
+
     return (
-      <div><EventsContainer teams={this.props.content} selectedTeam={this.state.selectedTeam}/>{contentNodes}</div>
+      <div>
+        {sortedNodes.map((node) =>{
+          return node
+        })}
+        <EventsContainer teams={this.props.content} 
+                            selectedTeam={this.state.selectedTeam}
+        />
+      </div>
     )
   }
 }

@@ -49,11 +49,34 @@ export default class EventsContent extends React.Component {
   return eventArr
   }
 
+  resolveEventName(events) {
+    events.forEach((item) => {
+      let res = item.split(".")
+      if (res.length === 2) {
+        res[2] = res [1]
+        res[1] = "Premier League"
+      }
+      else if (res[1] === "2") {
+        res[1] = "Championship"
+      }
+      else if (res[1] === "3") {
+        res[1] = "League 1"
+      }
+      else if (res[1] === "4") {
+        res[1] = "League 2"
+      }
+
+      return res
+    })
+  }
+
+
   render() {
     let contentNodes = []
     let eventNodes =  this.filterEventsByTeam(this.props.selectedTeam)
     //Translates league keys to human readable format ONLY FOR ENGLISH LEAGUES SO FAR - wrap in switch statement for res[0] === "en", "at", "es"...
     //This needs to be split off, turned into function, passed down as props
+    // let res = this.resolveEventName(eventNodes)
     eventNodes.forEach((item) => {
       let res = item.split(".")
       if (res.length === 2) {
