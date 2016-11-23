@@ -38,7 +38,7 @@ export default class TeamsContent extends React.Component {
 
     return (
       <div>
-        <button className="btn" onClick={() => this.showTeams()}>selct a team</button>
+        <button className="btn btn-default" onClick={() => this.showTeams()}>select a team</button>
         {this.state.isShowingTeams === true ? sortedNodes.map((node) => node) : null}
         <EventsContainer teams={this.props.content} 
                             selectedTeam={this.state.selectedTeam}

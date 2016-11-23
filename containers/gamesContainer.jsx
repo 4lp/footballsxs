@@ -45,21 +45,29 @@ export default class GamesContainer extends React.Component {
 
   render() {
     let {games, selectedEvents} = this.props
+    let selectedEvents1 = null
+    let selectedEvents2 = null
     if (games.isLoadingGames || games.content === undefined) {
       return this.renderLoading()
     }
     else if (games.content.games.length === 0 || games.content === undefined) {
     	return this.renderNoGames()
-    } 
+    }
+    if (selectedEvents[1]) {
+    	selectedEvents1 = this.props.resolveEventName(selectedEvents[0])
+    	selectedEvents2 = this.props.resolveEventName(selectedEvents[1])
+    }
     return (
     	<div>
-    		<p>compare {selectedEvents[0]} against {selectedEvents[1] ? selectedEvents[1] : null}</p>
-          {games.content !== undefined &&
+    		{selectedEvents[1] ? <p>compare {selectedEvents1[1]} {selectedEvents1[2]} against {selectedEvents2[1]} {selectedEvents2[2]}</p> : null}
+    		          {games.content !== undefined &&
           <GamesContent 
           	content={games.content} 
           	team={this.props.team} 
           	teams={this.props.teams} 
-          	selectedEvents={selectedEvents} 
+          	selectedEvents={selectedEvents}
+          	resolveEventName={this.props.resolveEventName}
+          	resolveTeamName={this.props.resolveTeamName}
           />
           }
         </div>

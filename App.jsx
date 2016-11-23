@@ -26,10 +26,16 @@ let store = finalCreateStore(reducer)
 class App extends React.Component {
 	render () {
 		return (
-			<div>
-				<Provider store={store}>
-					<TeamsContainer />
-				</Provider>
+			<div className="container">
+				<div className="col-sm-12">
+					<div className="row">
+						<h1>football sxs</h1>
+						<h4>football season by season, side by side</h4>
+					</div>
+					<Provider store={store}>
+						<TeamsContainer />
+					</Provider>
+				</div>
 			</div>
 			)
 	}

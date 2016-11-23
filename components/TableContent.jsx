@@ -236,8 +236,8 @@ export default class TableContent extends React.Component {
    		}
 		return(
 		<div>
-			{this.props.selectedEvents.length === 2 ? <p>points difference (only for same fixtures) = {points[0] - points[1]}</p> : null}
-			<table className="table">
+			<b>{this.props.selectedEvents.length === 2 ? <p>points difference (only for same fixtures) = {points[0] - points[1]}</p> : null}</b>
+			<table className="table table-condensed">
 					<tbody>
 						{this.props.heading}
 			      		{this.state.outerNodes.map((node) => {

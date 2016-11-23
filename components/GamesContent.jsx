@@ -9,21 +9,8 @@ export default class GamesContent extends React.Component {
 	    };
   	}
 
-	resolveTeamName(teamid) {
-		let teamName = null
-		this.props.teams.forEach((team) => {
-			if (team.id == teamid) {
-				teamName = team.title
-			}
-		})
-		return teamName
-	}
-
 	renderLoading() {
-		// while (this.state.outerNodes.length > 0) {
-		// 	this.state.outerNodes.pop()
-		// }
-		return <div>no events!</div>
+		return <div></div>
 	}
 
 	renderTableHeading() {
@@ -31,7 +18,8 @@ export default class GamesContent extends React.Component {
 		let headingNode = []
 		let i = 0
 		this.props.selectedEvents.forEach((event) => {
-			headingNode.push(<th key={i}>{event}</th>)
+			let resolvedName = this.props.resolveEventName(event)
+			headingNode.push(<th key={i}>{resolvedName[1]} {resolvedName[2]}</th>)
 			i++
 		})
 		headingArr.push(<tr><th>match</th>{headingNode}</tr>)
@@ -94,7 +82,7 @@ export default class GamesContent extends React.Component {
 	render() {
 	let tableContent = this.renderTableContent()	
 	let heading = this.renderTableHeading()
-	let teamName = this.resolveTeamName(this.props.team)
+	let teamName = this.props.resolveTeamName(this.props.team)
 
 	if (this.props.selectedEvents.length == 0) {
 		return this.renderLoading()
@@ -102,14 +90,13 @@ export default class GamesContent extends React.Component {
 
     return (
     <div>
-     	<p>{teamName}</p>
       	<TableContent 
       		tableContent={tableContent} 
       		heading={heading} 
       		key={this.props.selectedEvents.length} 
       		selectedEvents={this.props.selectedEvents}
       		team={this.props.team}
-      		resolveTeamName={this.resolveTeamName.bind(this)}
+      		resolveTeamName={this.props.resolveTeamName}
       	/>
     </div>
     )

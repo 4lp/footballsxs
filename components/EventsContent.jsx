@@ -49,65 +49,74 @@ export default class EventsContent extends React.Component {
   return eventArr
   }
 
-  resolveEventName(events) {
-    events.forEach((item) => {
-      let res = item.split(".")
-      if (res.length === 2) {
-        res[2] = res [1]
-        res[1] = "Premier League"
-      }
-      else if (res[1] === "2") {
-        res[1] = "Championship"
-      }
-      else if (res[1] === "3") {
-        res[1] = "League 1"
-      }
-      else if (res[1] === "4") {
-        res[1] = "League 2"
-      }
+  //Translates league keys to human readable format ONLY FOR ENGLISH LEAGUES SO FAR - wrap in switch statement for res[0] === "en", "at", "es"...
+  resolveEventName(item) {
+    let res = item.split(".")
+    if (res.length === 2) {
+      res[2] = res [1]
+      res[1] = "Premier League"
+    }
+    else if (res[1] === "2") {
+      res[1] = "Championship"
+    }
+    else if (res[1] === "3") {
+      res[1] = "League 1"
+    }
+    else if (res[1] === "4") {
+      res[1] = "League 2"
+    }
+    return res
+  }
 
-      return res
+  resolveTeamName(teamid) {
+    let teamName = null
+    this.props.teams.forEach((team) => {
+      if (team.id == teamid) {
+        teamName = team.title
+      }
     })
+    return teamName
   }
 
 
   render() {
     let contentNodes = []
     let eventNodes =  this.filterEventsByTeam(this.props.selectedTeam)
-    //Translates league keys to human readable format ONLY FOR ENGLISH LEAGUES SO FAR - wrap in switch statement for res[0] === "en", "at", "es"...
-    //This needs to be split off, turned into function, passed down as props
-    // let res = this.resolveEventName(eventNodes)
     eventNodes.forEach((item) => {
-      let res = item.split(".")
-      if (res.length === 2) {
-        res[2] = res [1]
-        res[1] = "Premier League"
-      }
-      else if (res[1] === "2") {
-        res[1] = "Championship"
-      }
-      else if (res[1] === "3") {
-        res[1] = "League 1"
-      }
-      else if (res[1] === "4") {
-        res[1] = "League 2"
-      }
-
+      let res = this.resolveEventName(item)
       let node = (
-        <li onClick={() => this.setEvent(item)} key={item}>{res[1]} {res[2]}</li>
+        <li>
+            <button className={this.state.selectedEvents && this.state.selectedEvents[0] === item ? "btn btn-success" :
+                               this.state.selectedEvents && this.state.selectedEvents[1] === item ? "btn btn-info" : 
+                               "btn btn-default"} 
+                    onClick={() => this.setEvent(item)} 
+                    key={item}>
+                    {res[1]} {res[2]}
+
+            </button>
+        </li>
       )
       contentNodes.push(node)
     })
     return (
       <div>
-        <p>selected team = {this.props.selectedTeam}</p>
+        <p><b>{this.resolveTeamName(this.props.selectedTeam)}</b></p>
         <div>
-          events = 
           <ul>
-            {contentNodes}
+            {contentNodes.map((node) => {
+              return node
+            })}
           </ul>
         </div>
-        { this.state.selectedEvents ? <GamesContainer key={this.state.selectedEvents} team={this.props.selectedTeam} selectedEvents={this.state.selectedEvents} teams={this.props.teams} /> : null}
+        { this.state.selectedEvents ? 
+          <GamesContainer 
+            key={this.state.selectedEvents} 
+            team={this.props.selectedTeam} 
+            selectedEvents={this.state.selectedEvents} 
+            teams={this.props.teams}
+            resolveEventName={this.resolveEventName.bind(this)} 
+            resolveTeamName={this.resolveTeamName.bind(this)} /> 
+        : null}
       </div>
     )
   }
