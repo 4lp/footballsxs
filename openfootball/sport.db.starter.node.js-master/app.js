@@ -10,8 +10,7 @@ app.get( '/events', function( req, res, next ) {
   sportdb.Event.findAll( function( err, events ) {
     if( err )
       return next( err );
-    
-    console.log( events );
+
     res.json( events );
   });
 });
@@ -20,9 +19,17 @@ app.get( '/teams', function( req, res, next ) {
   sportdb.Team.findAll( function( err, teams ) {
     if( err )
       return next( err );
-    
-    console.log( teams );
+
     res.json( teams );
+  });
+});
+
+app.get( '/countries', function( req, res, next ) {
+  sportdb.Country.findAll( function( err, countries ) {
+    if( err )
+      return next( err );
+
+    res.json( countries );
   });
 });
 
@@ -37,12 +44,10 @@ app.get( '/event/:key/teams', function( req, res, next ) {
     if( event === undefined )
       return next( new Error( "Event Not Found w/ Key >" + eventKey + "<" ) );
 
-    console.log( event );
     sportdb.Team.findByEvent( event, function( err, teams ) {
       if( err )
         return next( err );
 
-      console.log( teams );
       // step 2: map to json structs for serialization/marshalling
       var data = {
         key:   event.key,
@@ -66,12 +71,11 @@ app.get( '/event/:key/games', function( req, res, next ) {
     if( event === undefined )
       return next( new Error( "Event Not Found w/ Key >" + eventKey + "<" ) );
 
-    console.log( event );
+
     sportdb.Game.findByEvent( event, function( err, games ) {
       if( err )
         return next( err );
 
-      console.log( games );
       // step 2: map to json structs for serialization/marshalling
 
       gamesArr = []

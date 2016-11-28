@@ -8,10 +8,6 @@ export default class TableContent extends React.Component {
 	    };
   	}
 
-  	// shouldComponentUpdate() {
-  	// 	return this.state.outerNodes.length !== this.props.selectedEvents.length
-  	// }
-
   	makeSingleTable(contentList) {
   		let contentNodes = []
 		let i = 0
@@ -236,7 +232,7 @@ export default class TableContent extends React.Component {
    		}
 		return(
 		<div>
-			<b>{this.props.selectedEvents.length === 2 ? <p>points difference (only for same fixtures) = {points[0] - points[1]}</p> : null}</b>
+			<b>{this.props.selectedEvents.length === 2 ? <p>Points difference (only for same fixtures) = {points[0] - points[1]}</p> : null}</b>
 			<table className="table table-condensed">
 					<tbody>
 						{this.props.heading}

@@ -46,7 +46,12 @@ export default class EventsContainer extends React.Component {
     return (
     	<div>
           {events.content !== undefined && eventTeams.content !== undefined &&
-          <EventsContent key={selectedTeam} content={events.content} eventTeams={eventTeams} selectedTeam={selectedTeam} teams={this.props.teams} />
+          <EventsContent 
+            key={selectedTeam} 
+            content={events.content} 
+            eventTeams={eventTeams} 
+            selectedTeam={selectedTeam} 
+            teams={this.props.teams} />
           }
         </div>
     )

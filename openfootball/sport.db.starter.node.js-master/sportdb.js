@@ -11,7 +11,8 @@ var db      = new sqlite3.Database('./football.db');
 var sportdb = {
   Team:  {},
   Event: {},
-  Game: {}
+  Game: {},
+  Country: {},
 };
 
 
@@ -30,7 +31,6 @@ sportdb.Team.findByEvent = function( event, callback )  {
 
   db.all( query, event.key,
            function(err, rows) {
-        console.log( "Team.findByEvent-complete" );
         callback( err, rows );
    });
 };
@@ -51,7 +51,6 @@ sportdb.Game.findByEvent = function( event, callback )  {
 
   db.all( query, event.key,
            function(err, rows) {
-        console.log( "Game.findByEvent-complete" );
         callback( err, rows );
    });
 };
@@ -70,7 +69,6 @@ sportdb.Event.findByKey = function( key, callback ) {
 
   db.get( query, key,
            function(err, row) {
-        console.log( "Event.findByKey-complete" );
         callback( err, row );
   });
 };
@@ -87,7 +85,6 @@ sportdb.Event.findAll = function( callback )  {
 
   db.all( query,
            function(err, rows) {
-        console.log( "Event.findAll-complete" );
         callback( err, rows );
    });
 };
@@ -100,7 +97,18 @@ sportdb.Team.findAll = function( callback )  {
    
   db.all( query,
            function(err, rows) {
-        console.log( "Event.findAll-complete" );
+        callback( err, rows );
+   });
+};
+
+sportdb.Country.findAll = function( callback )  {
+
+  var query =
+   "SELECT *" +
+   "FROM countries " 
+   
+  db.all( query,
+           function(err, rows) {
         callback( err, rows );
    });
 };

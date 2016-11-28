@@ -24,6 +24,31 @@ let store = finalCreateStore(reducer)
 
 
 class App extends React.Component {
+	constructor(props){
+    super(props);
+      	this.state = {
+        	showingAbout: false,
+      	}
+  	}
+
+  	renderMain() {
+  		return <div>
+  			<Provider store={store}>
+				<TeamsContainer />
+			</Provider>
+  		</div>
+  	}
+
+  	renderAbout() {
+  		return <div>
+  		this is where the about would go
+  		</div>
+  	}
+
+  	setAbout() {
+  		this.setState({ showingAbout: !this.state.showingAbout })
+  	}
+
 	render () {
 		return (
 			<div className="container">
@@ -31,10 +56,9 @@ class App extends React.Component {
 					<div className="row">
 						<h1>football sxs</h1>
 						<h4>football season by season, side by side</h4>
+						<h4 onClick={() => this.setAbout()}>questions? click here</h4>
 					</div>
-					<Provider store={store}>
-						<TeamsContainer />
-					</Provider>
+					{this.state.showingAbout === true ? this.renderAbout() : this.renderMain()}
 				</div>
 			</div>
 			)

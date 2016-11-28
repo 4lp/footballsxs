@@ -1,0 +1,18 @@
+####################################
+# Datafile for World Cup 2014
+#
+#  use
+#    $ sportdb new worldcup2014
+
+
+world  'world.db', setup: 'countries'
+
+football 'eng-england'
+football 'es-espana'
+football 'de-deutschland'
+football 'at-austria'
+football 'it-italy'
+football 'fr-france'
+football 'ru-russia'
+football 'br-brazil'
+

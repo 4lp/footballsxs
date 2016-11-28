@@ -35,8 +35,7 @@ export default class GamesContainer extends React.Component {
       <div className="container">
         <div className="row">
           <div className="col-md-10 col-xs-12">
-          	<p>compare {selectedEvents[0]} against {selectedEvents[1] ? selectedEvents[1] : null}</p>
-            <p>No games for your event :( please consider contributing match data at <a href="https://github.com/openfootball" target="_blank">https://github.com/openfootball</a></p>
+            <p>No games found for one of your events :( please consider contributing match data at <a href="https://github.com/openfootball" target="_blank">https://github.com/openfootball</a></p>
           </div>
         </div>
       </div>
@@ -59,7 +58,7 @@ export default class GamesContainer extends React.Component {
     }
     return (
     	<div>
-    		{selectedEvents[1] ? <p>compare {selectedEvents1[1]} {selectedEvents1[2]} against {selectedEvents2[1]} {selectedEvents2[2]}</p> : null}
+    		{selectedEvents[1] ? <p>Comparing <b>{selectedEvents1[1]} {selectedEvents1[2]}</b> against <b>{selectedEvents2[1]} {selectedEvents2[2]}</b></p> : null}
     		          {games.content !== undefined &&
           <GamesContent 
           	content={games.content} 
