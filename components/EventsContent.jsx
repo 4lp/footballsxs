@@ -102,7 +102,7 @@ export default class EventsContent extends React.Component {
     })
     return (
       <div>
-        { this.props.selectedTeam ? <p>return to <a className="clickable" onClick={() => {this.props.showTeams(); this.props.hideCountries()}}>{this.props.selectedCountry}</a></p> : null}
+        { this.props.selectedTeam ? <p>return to <a className="clickable" onClick={() => {this.props.setTeam(0); this.props.showTeams(); this.props.hideCountries()}}>{this.props.selectedCountry}</a></p> : null}
         <p><b>{this.resolveTeamName(this.props.selectedTeam)}</b></p>
         <div>{contentNodes.length === 0 && this.props.selectedTeam ? this.renderNoEvents() : null}</div>
         <div>

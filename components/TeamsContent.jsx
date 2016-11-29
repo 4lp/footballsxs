@@ -106,8 +106,8 @@ export default class TeamsContent extends React.Component {
     let alphabet = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
     alphabet.map((letter) => {
       let node = (
-        <li key={letter}>
-          <a className="clickable" onClick={() => {this.setLetter(letter); this.showCountries(); this.hideTeams()}}>{letter}</a>
+        <li className={this.state.selectedLetter === letter ? "active" : "clickable"} key={letter}>
+          <a onClick={() => {this.setLetter(letter); this.showCountries(); this.hideTeams(); this.setTeam(0)}}>{letter}</a>
         </li>
       )
       letters.push(node)
@@ -164,8 +164,10 @@ export default class TeamsContent extends React.Component {
           teams={this.props.teams} 
           selectedTeam={this.state.selectedTeam}
           showTeams={this.showTeams.bind(this)}
+          setTeam={this.setTeam.bind(this)}
           hideCountries={this.hideCountries.bind(this)}
           selectedCountry={this.resolveCountryName(this.state.selectedCountry)}
+          selectedLetter={this.state.selectedLetter}
         />
       </div>
     )
