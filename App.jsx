@@ -33,6 +33,7 @@ class App extends React.Component {
 
   	renderMain() {
   		return <div>
+  			<h4>pick a country to begin!</h4>
   			<Provider store={store}>
 				<TeamsContainer />
 			</Provider>
@@ -42,6 +43,8 @@ class App extends React.Component {
   	renderAbout() {
   		return <div>
   		this is where the about would go
+  		<br />
+  		<a className="clickable" onClick={() => this.setAbout()}>back home</a>
   		</div>
   	}
 
@@ -56,7 +59,7 @@ class App extends React.Component {
 					<div className="row">
 						<h1>football sxs</h1>
 						<h4>football season by season, side by side</h4>
-						<h4 onClick={() => this.setAbout()}>questions? click here</h4>
+						<h4 className="clickable" onClick={() => this.setAbout()}>questions? concerns? click here</h4>
 					</div>
 					{this.state.showingAbout === true ? this.renderAbout() : this.renderMain()}
 				</div>

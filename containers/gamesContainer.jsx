@@ -58,7 +58,7 @@ export default class GamesContainer extends React.Component {
     }
     return (
     	<div>
-    		{selectedEvents[1] ? <p>Comparing <b>{selectedEvents1[1]} {selectedEvents1[2]}</b> against <b>{selectedEvents2[1]} {selectedEvents2[2]}</b></p> : null}
+    		{selectedEvents[1] ? <p>Comparing <b>{selectedEvents1}</b> against <b>{selectedEvents2}</b></p> : null}
     		          {games.content !== undefined &&
           <GamesContent 
           	content={games.content} 

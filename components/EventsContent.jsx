@@ -49,23 +49,14 @@ export default class EventsContent extends React.Component {
   return eventArr
   }
 
-  //Translates league keys to human readable format ONLY FOR ENGLISH LEAGUES SO FAR - wrap in switch statement for res[0] === "en", "at", "es"...
-  resolveEventName(item) {
-    let res = item.split(".")
-    if (res.length === 2) {
-      res[2] = res [1]
-      res[1] = "Premier League"
-    }
-    else if (res[1] === "2") {
-      res[1] = "Championship"
-    }
-    else if (res[1] === "3") {
-      res[1] = "League 1"
-    }
-    else if (res[1] === "4") {
-      res[1] = "League 2"
-    }
-    return res
+  resolveEventName(event) {
+    let eventName = null
+    this.props.content.forEach((item) => {
+      if (event === item.key) {
+        eventName = item.title
+      }
+    })
+    return eventName
   }
 
   resolveTeamName(teamid) {
@@ -78,6 +69,17 @@ export default class EventsContent extends React.Component {
     return teamName
   }
 
+  renderNoEvents() {
+    return (
+      <div className="container">
+        <div className="row">
+          <div className="col-md-10 col-xs-12">
+            <p>No events found for your selected team :( please consider contributing match data at <a href="https://github.com/openfootball" target="_blank">https://github.com/openfootball</a></p>
+          </div>
+        </div>
+      </div>
+    )
+  }
 
   render() {
     let contentNodes = []
@@ -91,7 +93,7 @@ export default class EventsContent extends React.Component {
                                "btn btn-default"} 
                     onClick={() => this.setEvent(item)} 
                     key={item}>
-                    {res[1]} {res[2]}
+                    {res}
 
             </button>
         </li>
@@ -100,7 +102,9 @@ export default class EventsContent extends React.Component {
     })
     return (
       <div>
+        { this.props.selectedTeam ? <p>return to <a className="clickable" onClick={() => {this.props.showTeams(); this.props.hideCountries()}}>{this.props.selectedCountry}</a></p> : null}
         <p><b>{this.resolveTeamName(this.props.selectedTeam)}</b></p>
+        <div>{contentNodes.length === 0 && this.props.selectedTeam ? this.renderNoEvents() : null}</div>
         <div>
           <ul>
             {contentNodes.map((node) => {

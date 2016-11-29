@@ -19,7 +19,7 @@ export default class GamesContent extends React.Component {
 		let i = 0
 		this.props.selectedEvents.forEach((event) => {
 			let resolvedName = this.props.resolveEventName(event)
-			headingNode.push(<th key={i}>{resolvedName[1]} {resolvedName[2]}</th>)
+			headingNode.push(<th key={i}>{resolvedName}</th>)
 			i++
 		})
 		headingArr.push(<tr><th>match</th>{headingNode}</tr>)

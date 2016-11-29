@@ -51,7 +51,10 @@ export default class EventsContainer extends React.Component {
             content={events.content} 
             eventTeams={eventTeams} 
             selectedTeam={selectedTeam} 
-            teams={this.props.teams} />
+            teams={this.props.teams}
+            showTeams={this.props.showTeams}
+            hideCountries={this.props.hideCountries}
+            selectedCountry={this.props.selectedCountry} />
           }
         </div>
     )

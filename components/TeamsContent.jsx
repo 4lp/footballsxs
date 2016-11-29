@@ -8,7 +8,6 @@ export default class TeamsContent extends React.Component {
       selectedTeam: 0,
       isShowingTeams: true,
       isShowingCountries: true,
-      isShowingLetters: false,
       selectedCountry: 0,
       selectedLetter: null,
     };
@@ -34,20 +33,12 @@ export default class TeamsContent extends React.Component {
     this.setState({ isShowingCountries: true })
   }
 
-  showLetters() {
-    this.setState({ isShowingLetters: true })
-  }
-
   hideTeams() {
     this.setState({ isShowingTeams: false })
   }
 
   hideCountries() {
     this.setState({ isShowingCountries: false })
-  }
-
-  hideLetters() {
-    this.setState({ isShowingLetters: false })
   }
 
   compareKeys(a, b) {
@@ -69,13 +60,23 @@ export default class TeamsContent extends React.Component {
     }
   }
 
+  resolveCountryName(country) {
+    let countryName = null
+    this.props.countries.forEach((item) => {
+      if (country === item.id) {
+        countryName = item.name
+      }
+    })
+    return countryName
+  }
+
   renderTeams(teams) {
     let teamNodes = []
     let filteredTeams = teams.filter(this.isInSelectedCountry.bind(this))
     filteredTeams.forEach((item) => {
     let node = (
       <div key={item.title}>
-        <div onClick={() => {this.setTeam(item.id); this.hideTeams()}}>{item.title}</div>
+        <div className="clickable" onClick={() => {this.setTeam(item.id); this.hideTeams()}}>{item.title}</div>
       </div>
       )
       teamNodes.push(node)
@@ -91,7 +92,7 @@ export default class TeamsContent extends React.Component {
     filteredCountries.forEach((item) => {
       let node = (
         <div key={item.name}>
-          <div onClick={() => {this.setCountry(item.id); this.hideCountries(); this.showTeams()}}>{item.name}</div>
+          <div className="clickable" onClick={() => {this.setCountry(item.id); this.hideCountries(); this.showTeams()}}>{item.name}</div>
         </div>
       )
       countryNodes.push(node)
@@ -105,13 +106,25 @@ export default class TeamsContent extends React.Component {
     let alphabet = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
     alphabet.map((letter) => {
       let node = (
-        <div key={letter}>
-          <div onClick={() => {this.setLetter(letter); this.hideLetters(); this.showCountries()}}>{letter}</div>
-        </div>
+        <li key={letter}>
+          <a className="clickable" onClick={() => {this.setLetter(letter); this.showCountries(); this.hideTeams()}}>{letter}</a>
+        </li>
       )
       letters.push(node)
     })
     return letters
+  }
+
+  renderNoTeams() {
+    return (
+      <div className="container">
+        <div className="row">
+          <div className="col-md-10 col-xs-12">
+            <p>No teams found for your selected country :( please consider contributing match data at <a href="https://github.com/openfootball" target="_blank">https://github.com/openfootball</a></p>
+          </div>
+        </div>
+      </div>
+    )
   }
 
   renderLoading() {
@@ -137,16 +150,22 @@ export default class TeamsContent extends React.Component {
       sortedTeamNodes = this.renderTeams(this.props.teams)
       sortedCountryNodes = this.renderCountries(this.props.countries) 
       letters = this.renderLetters()
-    } 
+    }
 
     return (
       <div>
-        <button className="btn btn-default" onClick={() => {this.showLetters(); this.hideCountries(); this.hideTeams()}}>select a team</button>
-        {this.state.isShowingLetters === true ? letters.map((node) => node) : null}
-        {this.state.isShowingCountries === true ? sortedCountryNodes.map((node) => node) : null}
-        {this.state.isShowingTeams === true ? sortedTeamNodes.map((node) => node) : null}
-        <EventsContainer    teams={this.props.teams} 
-                            selectedTeam={this.state.selectedTeam}
+        <nav><ul className="pagination">
+        {letters.map((node) => node)}
+        </ul></nav>
+        <div>{this.state.isShowingTeams === true && sortedTeamNodes.length === 0 && this.state.selectedLetter ? this.renderNoTeams() : null}</div>
+        <div>{this.state.isShowingCountries === true ? sortedCountryNodes.map((node) => node) : null}</div>
+        <div>{this.state.isShowingTeams === true ? sortedTeamNodes.map((node) => node) : null}</div>
+        <EventsContainer    
+          teams={this.props.teams} 
+          selectedTeam={this.state.selectedTeam}
+          showTeams={this.showTeams.bind(this)}
+          hideCountries={this.hideCountries.bind(this)}
+          selectedCountry={this.resolveCountryName(this.state.selectedCountry)}
         />
       </div>
     )

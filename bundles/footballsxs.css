@@ -5,3 +5,7 @@ th, td {
 li {
 	list-style-type: none;
 }
+
+.clickable {
+	cursor: pointer;
+}
