@@ -1,7 +1,7 @@
 TODO
 
--select team by country code
--finish event namer for other countries
--create about page
+-~~select team by country code~~
+-~~finish event namer for other countries~~
+-~~create about page~~
 -style
 -refactor TableContent.jsx - flattenchildren hack, state 'hack', nasty makeRows function

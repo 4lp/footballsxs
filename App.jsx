@@ -13,6 +13,7 @@ import * as reducers from "./reducers"
 import GamesContainer from "./containers/gamesContainer"
 import TeamsContainer from "./containers/TeamsContainer"
 import EventsContainer from "./containers/EventsContainer"
+import AboutMe from "./components/AboutMe"
 
 
 let finalCreateStore = compose(
@@ -41,11 +42,7 @@ class App extends React.Component {
   	}
 
   	renderAbout() {
-  		return <div>
-  		this is where the about would go
-  		<br />
-  		<a className="clickable" onClick={() => this.setAbout()}>back home</a>
-  		</div>
+  		return <AboutMe setAbout={this.setAbout.bind(this)} />
   	}
 
   	setAbout() {
