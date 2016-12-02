@@ -7,6 +7,9 @@
 
 world  'world.db', setup: 'countries'
 
+football 'major-league-soccer'
+football 'ch-confoederatio-helvetica'
+football 'mx-mexico'
 football 'eng-england'
 football 'es-espana'
 football 'de-deutschland'
