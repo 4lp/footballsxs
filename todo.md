@@ -4,5 +4,5 @@ TODO
 -~~finish event namer for other countries~~
 -~~create about page~~
 -event ordering
--style
--refactor TableContent.jsx - flattenchildren hack, state 'hack', nasty makeRows function
+-style?
+-refactor TableContent.jsx - ~~flattenchildren hack~~, state 'hack', nasty makeRows function
