@@ -81,10 +81,28 @@ export default class EventsContent extends React.Component {
     )
   }
 
+  sortEvents(a, b) {
+    //grabs the first set of numbers
+    console.log(a)
+    let daterx1 = new RegExp(/(\d)+1\d(?=\/)|(\d)+0\d(?=)\d/g)
+    let daterx2 = new RegExp(/(\d)+1\d(?=\/)|(\d)+0\d(?=)\d/g)
+    let aRex = daterx1.exec(a)
+    console.log(aRex)
+    let aDate = new Date(aRex[0])
+    console.log(aDate)
+    let bRex = daterx2.exec(b)
+    console.log(b)
+    console.log(bRex)
+    let bDate = new Date(bRex[0])
+    console.log(bDate)
+    return aDate > bDate ? false : true
+  }
+
   render() {
     let contentNodes = []
     let eventNodes =  this.filterEventsByTeam(this.props.selectedTeam)
-    eventNodes.forEach((item) => {
+    let sortedEventNodes = eventNodes.sort(this.sortEvents)
+    sortedEventNodes.forEach((item) => {
       let res = this.resolveEventName(item)
       let node = (
         <li>
@@ -92,7 +110,7 @@ export default class EventsContent extends React.Component {
                                this.state.selectedEvents && this.state.selectedEvents[1] === item ? "btn btn-info" : 
                                "btn btn-default"} 
                     onClick={() => this.setEvent(item)} 
-                    key={item}>
+                    key={res}>
                     {res}
 
             </button>
