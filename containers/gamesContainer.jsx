@@ -35,7 +35,7 @@ export default class GamesContainer extends React.Component {
       <div className="container">
         <div className="row">
           <div className="col-md-10 col-xs-12">
-            <p>No games found for one of your events :( please consider contributing match data at <a href="https://github.com/openfootball" target="_blank">https://github.com/openfootball</a></p>
+            <p>No games found for one of your events ☹️ please consider contributing match data at <a href="https://github.com/openfootball" target="_blank">https://github.com/openfootball</a></p>
           </div>
         </div>
       </div>

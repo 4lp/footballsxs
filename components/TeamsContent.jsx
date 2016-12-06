@@ -106,7 +106,7 @@ export default class TeamsContent extends React.Component {
     let alphabet = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
     alphabet.map((letter) => {
       let node = (
-        <li className={this.state.selectedLetter === letter ? "active" : "clickable"} key={letter}>
+        <li className={this.state.selectedLetter === letter ? "clickable active" : "clickable"} key={letter}>
           <a onClick={() => {this.setLetter(letter); this.showCountries(); this.hideTeams(); this.setTeam(0)}}>{letter}</a>
         </li>
       )
@@ -120,7 +120,7 @@ export default class TeamsContent extends React.Component {
       <div className="container">
         <div className="row">
           <div className="col-md-10 col-xs-12">
-            <p>No teams found for your selected country :( please consider contributing match data at <a href="https://github.com/openfootball" target="_blank">https://github.com/openfootball</a></p>
+            <p>No teams found for {this.resolveCountryName(this.state.selectedCountry)} ☹️ please consider contributing data at <a href="https://github.com/openfootball" target="_blank">https://github.com/openfootball</a></p>
           </div>
         </div>
       </div>

@@ -74,7 +74,7 @@ export default class EventsContent extends React.Component {
       <div className="container">
         <div className="row">
           <div className="col-md-10 col-xs-12">
-            <p>No events found for your selected team :( please consider contributing match data at <a href="https://github.com/openfootball" target="_blank">https://github.com/openfootball</a></p>
+            <p>No events found for {this.resolveTeamName(this.props.selectedTeam)} ☹️ please consider contributing data at <a href="https://github.com/openfootball" target="_blank">https://github.com/openfootball</a></p>
           </div>
         </div>
       </div>
@@ -83,18 +83,11 @@ export default class EventsContent extends React.Component {
 
   sortEvents(a, b) {
     //grabs the first set of numbers
-    console.log(a)
-    let daterx1 = new RegExp(/(\d)+1\d(?=\/)|(\d)+0\d(?=)\d/g)
-    let daterx2 = new RegExp(/(\d)+1\d(?=\/)|(\d)+0\d(?=)\d/g)
-    let aRex = daterx1.exec(a)
-    console.log(aRex)
+    const daterx = new RegExp(/(\d)+1\d(?=\/)|(\d)+0\d(?=)\d/)
+    let aRex = daterx.exec(a)
     let aDate = new Date(aRex[0])
-    console.log(aDate)
-    let bRex = daterx2.exec(b)
-    console.log(b)
-    console.log(bRex)
+    let bRex = daterx.exec(b)
     let bDate = new Date(bRex[0])
-    console.log(bDate)
     return aDate > bDate ? false : true
   }
 
@@ -130,6 +123,7 @@ export default class EventsContent extends React.Component {
             })}
           </ul>
         </div>
+        <br />
         { this.state.selectedEvents ? 
           <GamesContainer 
             key={this.state.selectedEvents} 

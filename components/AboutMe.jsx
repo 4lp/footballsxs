@@ -7,35 +7,44 @@ export default class AboutMe extends React.Component {
   		<br />
   			<h4>what's this site all about?</h4>
   			footballsxs compares a teams result's throughout two seasons, fixture by fixture. 
-  			want to know where mourinho's chelsea dropped points on his last season in charge compared
-  			to their title-winning season the year before? want to see how tuchel's dortmund has been doing against 
-  			klopp's? want to see real madrid's performance in la liga under zidane, benitez, and mourinho, match by 
-  			match?
+  			is your team doing well this season only because they've played the same opposition they won against
+  			last season? do you feel a title challenge coming on and want to see where the results stack up against 
+  			those from another good season? if your club is a coaching carousel, do you want to see how this season's manager 
+  			did against last season's, game-by-game? find the answers here!
+  			<br />
+  			<br />
+  			to use this site, simply select a country by letter, select a team from that country, and select the two events you'd like to compare 
+  			(the first will be marked with green and the second with blue). click the event again to deselect it or click a different event to compare the first
+  			against it instead. 
   			<br />
   			<br />
   			this developed out of a series of posts on the liverpoolfc subreddit 
   			by <a href="https://www.reddit.com/user/indian_suzuki" target="_blank">/u/indian_suzuki</a> who had the original idea for the 
-  			table and maintained it by hand. when users in the comments asked about other teams in the EPL and other
-  			seasons, I decided to build this site!
+  			table and maintained it by hand. if you're reading this - thank you!
   			<br />
   			<br />
   			<h4>I can't find any data!</h4>
   			footballsxs is driven by 
   			the <a href="https://github.com/openfootball" target="_blank">openfootball</a> project 
   			and is built dynamically based on what data is present. 
-  			As of writing this, the countries with league data are:
+  			as of writing this, the countries with league data are:
   			<ul>
   				<br />
   				<li>England</li>
   				<li>Austria</li>
   				<li>Germany</li>
-  				<li>Russia</li>
-  				<li>France</li>
   				<li>Spain</li>
   				<li>Italy</li>
+  				<li>Russia (not current)</li>
+  				<li>France (not current)</li>
+  				<li>U.S.A. (not current)</li>
+  				<li>Mexico (not current & there as issues with the dataset)</li>
   			</ul>
   			if you would like a country or league displayed, please consider contributing to 
   			the <a href="https://github.com/openfootball" target="_blank">openfootball</a> project.
+  			<br />
+  			<br />
+  			also, the database updates daily at 9am GMT and so I apologize if today's results aren't up yet
   			<br />
   			<br />
   			<h4>I would like to contribute but don't know how! that page you keep linking to is weird and daunting and
@@ -45,9 +54,10 @@ export default class AboutMe extends React.Component {
   			target="_blank">rundown</a> by one of the maintainers of openfootball on how to contribute:
   			<br />
   			<br />
-  			"...if you're interested (and you're more than welcome) then you 
-			update the plain text file e.g. 
-			openfootball/eng-england/2016-17/1-premierleague-i.txt [1] it reads: 
+  			<i>"...if you're interested (and you're more than welcome) then you 
+			update the plain text file 
+			e.g. <a href="https://github.com/openfootball/eng-england/blob/master/2016-17/1-premierleague-i.txt"
+			target="_blank"> openfootball/eng-england/2016-17/1-premierleague-i.txt</a> it reads: 
 			<br />
 			<br />
 			Matchday 5
@@ -64,7 +74,33 @@ export default class AboutMe extends React.Component {
 			  <br />
 			  ... 
 			<br />
-			    It's all on GitHub - it works kind-of like a wiki. First you need 
+			<br />
+			Matchday 5 
+			<br /> 
+			[Sun Sept/18]
+			<br /> 
+			  Watford FC 3-1 (1-0) Manchester United @ Vicarage Road, Watford 
+			<br />
+			    [Capoue 34' Zuniga 83' Deeney 90+5' (pen.); Rashford 62']
+			<br /> 
+			  Crystal Palace 4-1 (2-0) Stoke City @ Selhurst Park, London
+			<br />
+			    [Tomkins 9' Dann 11' McArthur 71' A. Townsend 75'; Arnautovic 90+4']
+			<br /> 
+			  Southampton FC 1-0 (0-0) Swansea City @ St. Mary's Stadium, Southampton
+			<br />
+			    [Austin 64'] 
+			<br />
+			  Tottenham Hotspur 1-0 (0-0) Sunderland AFC @ White Hart Lane, London 
+			<br />
+			    [H. Kane 59']"</i>
+			<br />
+			<br />
+			[quick note - all you need to enter is the score for each game but every extra bit of info helps. unfortunately the 'mini-language' for data entry isn't very well documented yet so
+			you'll probably have to work off examples]
+			<br />
+			<br />
+			    <i>"It's all on GitHub - it works kind-of like a wiki. First you need 
 			a GitHub Account and for the first edits you will have to manage to 
 			send a pull request (e.g. fork the /eng-england repo and than 
 			change/update the text file and then go to the pull request tab and 
@@ -73,7 +109,7 @@ export default class AboutMe extends React.Component {
 			    Once you're 'established' you will get full access to the repo by 
 			joining the github org (if you're interested) and than you can edit in 
 			the browser (really like a wiki) and just commit/save or use the 
-			'offline' git machinery etc."
+			'offline' git machinery etc."</i>
 			<br />
 			<br />
 			if you're still lost feel free to ask 
@@ -85,9 +121,9 @@ export default class AboutMe extends React.Component {
   			I love 
   			the <a href="https://groups.google.com/forum/#!forum/opensport" target="_blank">opensport</a> project 
   			and believe that it has the potential to the definitive crowd-sourced sports 
-  			dataset online. The fact that it's free, open-source, and almost infinitely extensible (anyone want to 
+  			dataset online. the fact that it's free, open-source, and almost infinitely extensible (anyone want to 
   			contribute Kyrgyz lower league data from the 90's?) are the reasons I chose openfootball to drive footballsxs.
-  			That and, while building this website I started contributing myself some!
+  			(that and, as a contributer myself, I can fix any issues that arise immediately)
   			<br />
   			<br />
   			<h4>I have a suggestion for/I found a bug in the site!</h4>
@@ -98,6 +134,9 @@ export default class AboutMe extends React.Component {
   			<br />
   			if you do contribute to the repo, I'll check out your pull request and if it looks good, merge it and put it 
   			online.
+  			<br />
+  			<br />
+  			right now the known issues for the site are that the 2010 season for MLS doesn't sort correctly and that some of the datasets are inaccurate or incomplete.
   			<br />
   			<br />
   			<h4>who are you?</h4>
