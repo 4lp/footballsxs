@@ -1,4 +1,6 @@
+#needs dos2unix to run
+
 sportdb b
-pm2 stop footballapi
+rm './football.db'
 cp './sport.db' './football.db'
-pm2 start footballapi
+rm './sport.db'

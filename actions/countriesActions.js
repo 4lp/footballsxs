@@ -8,7 +8,7 @@ export const COUNTRIES_FAILURE = "COUNTRIES_FAILURE"
 
 export function fetchCountries() {
   return function (dispatch) {
-    let url = "http://localhost:9292/countries/"
+    let url = "http://footballsxs.com:9292/countries/"
     dispatch({type: COUNTRIES})
     return request(
       url, {},

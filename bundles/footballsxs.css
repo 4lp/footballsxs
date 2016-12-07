@@ -1,11 +1,12 @@
 body {
 	text-align: center;
 	font-size: 16px;
-	font-family: sans-serif;
+	font-family: 'Roboto', sans-serif;
 }
 
 h1{
     font-size: 4.236em;
+    font-family: 'Roboto Slab', serif;
 }
  
 h2{
@@ -41,7 +42,7 @@ p{
  
 @media all and (max-width: 599px) and (min-width: 320px) {
     body{
-        font-size: 12px;
+        font-size: 13px;
     }
  
 }
@@ -52,6 +53,22 @@ ul, li {
 	margin: 0;
 }
 
+html, body {
+    height: 100%;
+}
+
+html, body {
+    background: -moz-linear-gradient(left,  rgba(203,251,237,1) 0%, rgba(223,253,240,0) 100%);
+    background: -webkit-linear-gradient(left,  rgba(203,251,237,1) 0%,rgba(223,253,240,0) 100%);
+    background: linear-gradient(to right,  rgba(203,251,237,1) 0%,rgba(223,253,240,0) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cbfbed', endColorstr='#00dffdf0',GradientType=1 );
+}
+
+a:hover {
+    text-decoration: none;
+}
+
 .clickable {
 	cursor: pointer;
 }
+

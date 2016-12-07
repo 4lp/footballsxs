@@ -3,11 +3,9 @@ import React from "react"
 export default class AboutMe extends React.Component {
 	render() {
 		return <div>
-  		<a className="clickable" onClick={() => this.props.setAbout()}>back home</a>
-  		<br />
   			<h4>what's this site all about?</h4>
   			footballsxs compares a teams result's throughout two seasons, fixture by fixture. 
-  			is your team doing well this season only because they've played the same opposition they won against
+  			is your team doing well this season because so far they've only played the same opposition they won against
   			last season? do you feel a title challenge coming on and want to see where the results stack up against 
   			those from another good season? if your club is a coaching carousel, do you want to see how this season's manager 
   			did against last season's, game-by-game? find the answers here!
@@ -19,7 +17,7 @@ export default class AboutMe extends React.Component {
   			<br />
   			<br />
   			this developed out of a series of posts on the liverpoolfc subreddit 
-  			by <a href="https://www.reddit.com/user/indian_suzuki" target="_blank">/u/indian_suzuki</a> who had the original idea for the 
+  			by /u/indian_suzuki who had the original idea for the 
   			table and maintained it by hand. if you're reading this - thank you!
   			<br />
   			<br />
@@ -157,7 +155,8 @@ export default class AboutMe extends React.Component {
 				<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1" />
 			</form>
 			<br />
-  			<br />
+      <h4><a className="clickable" onClick={() => this.props.setAbout()}>back home</a></h4>
+  		<br />
   		</div>
 	}
 }

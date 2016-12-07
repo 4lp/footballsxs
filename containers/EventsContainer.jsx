@@ -40,7 +40,7 @@ export default class EventsContainer extends React.Component {
 
   render() {
     let {events, eventTeams, selectedTeam} = this.props
-    if (eventTeams.isLoadingEventTeams || eventTeams.content === undefined) {
+    if (selectedTeam !== 0 && eventTeams.isLoadingEventTeams || selectedTeam !== 0 && eventTeams.isLoadingEventTeams && eventTeams.content === undefined) {
       return this.renderLoading()
     }
     return (

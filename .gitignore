@@ -1,8 +1,10 @@
 **/tmp
 **/node_modules
-Datafile.bak
+**/bundles
+**/admin
 football.db
 sport.db
 .git
 webpack-stats-local.json
 webpack-stats-prod.json
+!bundles/footballsxs.css

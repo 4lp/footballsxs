@@ -8,7 +8,7 @@ export const GAMES_FAILURE = "GAMES_FAILURE"
 
 export function fetchGames(event) {
   return function (dispatch) {
-    let url = "http://localhost:9292/event/" + event + "/games/"
+    let url = "http://footballsxs.com:9292/event/" + event + "/games/"
     dispatch({type: GAMES})
     console.log("fetching " + event)
     return request(

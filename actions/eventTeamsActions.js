@@ -14,7 +14,7 @@ export const EVENTS_FAILURE = "EVENTS_FAILURE"
 
 export function eventTeams(event) {
   return function (dispatch) {
-    let url = "http://localhost:9292/event/" + event + "/teams"
+    let url = "http://footballsxs.com:9292/event/" + event + "/teams"
     dispatch({type: EVENTTEAMS})
     return request(
       url, {},
@@ -28,7 +28,7 @@ export function eventTeams(event) {
 
 export function fetchEvents() {
   return function (dispatch) {
-    let url = "http://localhost:9292/events"
+    let url = "http://footballsxs.com:9292/events"
     dispatch({type: EVENTS})
     return request(
       url, {},

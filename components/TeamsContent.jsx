@@ -76,7 +76,7 @@ export default class TeamsContent extends React.Component {
     filteredTeams.forEach((item) => {
     let node = (
       <div key={item.title}>
-        <div className="clickable" onClick={() => {this.setTeam(item.id); this.hideTeams()}}>{item.title}</div>
+        <a><div className="clickable" onClick={() => {this.setTeam(item.id); this.hideTeams()}}>{item.title}</div></a>
       </div>
       )
       teamNodes.push(node)
@@ -92,7 +92,7 @@ export default class TeamsContent extends React.Component {
     filteredCountries.forEach((item) => {
       let node = (
         <div key={item.name}>
-          <div className="clickable" onClick={() => {this.setCountry(item.id); this.hideCountries(); this.showTeams()}}>{item.name}</div>
+          <a><div className="clickable" onClick={() => {this.setCountry(item.id); this.hideCountries(); this.showTeams()}}>{item.name}</div></a>
         </div>
       )
       countryNodes.push(node)

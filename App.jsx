@@ -50,14 +50,17 @@ class App extends React.Component {
   	}
 
 	render () {
+    let about = <a><h4 className="clickable" onClick={() => this.setAbout()}>questions? concerns? click here</h4></a>
+    let back = <h4><a className="clickable" onClick={() => this.setAbout()}>back home</a></h4>
 		return (
 			<div className="container">
 				<div className="col-sm-12">
 					<div className="row">
 						<h1>football sxs</h1>
 						<h4>football season by season, side by side</h4>
-						<h4 className="clickable" onClick={() => this.setAbout()}>questions? concerns? click here</h4>
+            {this.state.showingAbout === false ? about : back}
 					</div>
+          <br />
 					{this.state.showingAbout === true ? this.renderAbout() : this.renderMain()}
 				</div>
 			</div>
