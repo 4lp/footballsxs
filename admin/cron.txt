@@ -1,2 +1,0 @@
-MAILTO=info@footballsxs.com
-0 3 * * * /var/www/footballsxs.com/update.sh > /dev/null
